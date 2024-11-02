@@ -48,7 +48,7 @@
         />
 
     <ImageView
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:src="@drawable/opening_2_pages"
