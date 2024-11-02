@@ -25,14 +25,9 @@
         android:fontFamily="@font/poppins_regular"
         android:textStyle="bold"
         android:text="Mulai Beternak"
-        app:backgroundTint="#C0833D"
+        android:backgroundTint="#C0833D"
         android:textColor="#FFFFFF"
+        android:id="@+id/start_button"
         />
-
-
-
-
-
-
 
 </RelativeLayout>
