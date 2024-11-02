@@ -5,32 +5,31 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_opening_3"
-    android:background="@drawable/opening_3_bg">
+    tools:context=".activity_opening_4"
+    android:background="@drawable/opening_4_bg">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/chicken_money_eggs"
-        android:layout_above="@+id/track_your_profit"
-        android:id="@+id/chicken_money_eggs"
+        android:src="@drawable/farmer"
+        android:layout_above="@+id/are_you_ready"
+        android:id="@+id/farmer"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/description_track_your_profit"
-        android:text="Track Your Profit"
+        android:layout_above="@id/description_are_you_ready"
+        android:text="Are You Ready?"
         android:layout_marginTop="50dp"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_regular"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:layout_alignStart="@+id/description_track_your_profit"
-        android:id="@+id/track_your_profit"
+        android:layout_alignStart="@+id/description_are_you_ready"
+        android:id="@+id/are_you_ready"
         />
 
     <TextView
@@ -40,20 +39,20 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="@string/description_track_your_profit"
+        android:text="@string/description_are_you_ready"
+        android:textColor="#86543D"
         android:textSize="15sp"
         android:textStyle="normal"
-        android:textColor="#86543D"
         android:layout_centerHorizontal="true"
         android:justificationMode="inter_word"
-        android:id="@+id/description_track_your_profit"
+        android:id="@+id/description_are_you_ready"
         />
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/opening_3_pages"
+        android:src="@drawable/opening_4_pages"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         android:layout_above="@+id/button_next"

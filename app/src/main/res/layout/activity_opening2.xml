@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/farmku"
         android:layout_above="@+id/manage_your_farm"
@@ -25,16 +24,16 @@
         android:layout_above="@id/description_manage_your_farm"
         android:text="Manage Your Farm"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_regular"
         android:textSize="20sp"
         android:textColor="@color/black"
+        android:layout_alignStart="@+id/description_manage_your_farm"
         android:id="@+id/manage_your_farm"
         />
 
     <TextView
-        android:layout_width="334dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_above="@id/pages"
         android:layout_marginLeft="30dp"
@@ -44,6 +43,8 @@
         android:textSize="15sp"
         android:textStyle="normal"
         android:textColor="#86543D"
+        android:layout_centerHorizontal="true"
+        android:justificationMode="inter_word"
         android:id="@+id/description_manage_your_farm"
         />
 
