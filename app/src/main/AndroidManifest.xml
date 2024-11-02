@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Eggspertmobile"
         tools:targetApi="31">
         <activity
+            android:name=".activity_opening_3"
+            android:exported="false" />
+        <activity
             android:name=".activity_opening_2"
             android:exported="false" />
         <activity
