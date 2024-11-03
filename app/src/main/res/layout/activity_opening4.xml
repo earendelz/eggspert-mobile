@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/farmer"
+        android:src="@drawable/sigma_farmer"
         android:layout_above="@+id/are_you_ready"
         android:id="@+id/farmer"
         />
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/description_are_you_ready"
-        android:text="Are You Ready?"
+        android:text="Apakah anda siap?"
         android:layout_marginTop="50dp"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_regular"
@@ -33,7 +33,7 @@
         />
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/pages"
         android:layout_marginLeft="30dp"
