@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">eggspert-mobile</string>
-    <string name="description_opening_2">Efficiently manage your poultry farm with ease. From tracking livestock health to organizing daily tasks, stay in control of every aspect.</string>
-    <string name="description_track_your_profit">Keep track of your poultry farm’s profit effortlessly. Monitor income, expenses, and overall performance, all in one simple dashboard.</string>
-    <string name="description_are_you_ready">Are you ready to take your poultry farming to the next level? Start managing smarter and maximize your farm’s potential today!</string>
+    <string name="description_opening_2">Kelola peternakan unggas Anda dengan efisien dan mudah.  Mulai dari melacak kesehatan ternak hingga mengatur tugas harian, pegang kendali atas setiap aspek.</string>
+    <string name="description_track_your_profit">Pantau pendapatan peternakan unggas Anda dengan mudah dan efektif. Dengan fitur ini, Anda dapat mengelola pemasukan keuangan anda secara real-time.</string>
+    <string name="description_are_you_ready">Apakah Anda siap untuk membawa peternakan unggas Anda ke level berikutnya? Mulailah mengelola dengan lebih cerdas dan maksimalkan potensi peternakan Anda!</string>
 </resources>

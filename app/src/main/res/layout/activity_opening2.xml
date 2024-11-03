@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/description_manage_your_farm"
-        android:text="Manage Your Farm"
+        android:text="Kelola Peternakan Anda"
         android:layout_marginTop="50dp"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_regular"
@@ -33,7 +33,7 @@
         />
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/pages"
         android:layout_marginLeft="30dp"
