@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/main_marginTop"
+                android:layout_marginBottom="@dimen/marginBottom"
+                android:layout_marginStart="@dimen/main_marginLeft"
+                android:layout_marginEnd="@dimen/main_marginRight">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/profile_pic"/>
+
+                <LinearLayout
+                    android:layout_width="246dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nickname"
+                        android:layout_width="246dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="User"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/farmName"
+                        android:layout_width="246dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Farm"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/notification"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/white_box"
+                    android:scaleType="center"
+                    android:src="@drawable/bell_icon"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beranda"
+                android:textSize="@dimen/heading1"
+                android:fontFamily="@font/poppins_regular"
+                android:textFontWeight="900"
+                android:layout_marginTop="@dimen/main_marginTop"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"/>
+
+            </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginTop="@dimen/main_marginTop"
+                android:layout_marginRight="@dimen/main_marginRight">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@drawable/layout_features">
+
+                         <ImageButton
+                             android:layout_width="100dp"
+                             android:layout_height="100dp"
+                             android:padding="5dp"
+                             android:scaleType="fitCenter"
+                             android:background="@drawable/white_box"
+                             android:src="@drawable/cage"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/main_marginLeft"
+                            android:layout_marginRight="@dimen/main_marginRight">
+
+                            <TextView
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:text="Kelola Kandang Ayam"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/poppins_regular"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Pembaruan Terakhir : "
+                                android:textSize="@dimen/small_text"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:padding="10dp"
+                        android:background="@drawable/layout_features">
+
+                        <ImageButton
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:padding="5dp"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/white_box"
+                            android:src="@drawable/report_vec"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/main_marginLeft"
+                            android:layout_marginRight="@dimen/main_marginRight">
+
+                            <TextView
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:text="Kelola Laporan Ayam"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pembaruan Terakhir : "
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textSize="@dimen/small_text"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:background="@drawable/layout_features">
+
+                        <ImageButton
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:scaleType="fitCenter"
+                            android:padding="5dp"
+                            android:background="@drawable/white_box"
+                            android:src="@drawable/vaccine"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/main_marginLeft"
+                            android:layout_marginRight="@dimen/main_marginRight">
+
+                            <TextView
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:text="Kelola Vaksinasi Ayam"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pembaruan Terakhir : "
+                                android:fontFamily="@font/poppins_regular"
+                                android:layout_marginTop="5dp"
+                                android:textSize="@dimen/small_text"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/light_choco"
+        app:itemTextColor="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Welcome"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/main_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/main_marginRight"
+        android:layout_marginStart="@dimen/main_marginLeft"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/welcome_page" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/header" />
+
+        <TextView
+            android:id="@+id/caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/marginRight"
+            android:layout_marginTop="@dimen/marginTop"
+            android:fontFamily="@font/poppins_regular"
+            android:text=""
+            android:textSize="@dimen/normal_text"
+            android:textAlignment="center"
+            android:textColor="#86543D" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Mulai Beternak"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/normal_text"
+            android:layout_marginTop="@dimen/marginTop"
+            android:textStyle="bold"
+            android:backgroundTint="@color/light_choco"/>
+
+    </LinearLayout>
+
+</LinearLayout>
