@@ -14,57 +14,77 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:text="Edit Profil"
+        android:text="@string/edit_profile"
         android:textColor="@color/cokelat"
-        android:textSize="20dp"
+        android:textSize="@dimen/heading1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="30dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
+
 
     <ImageView
         android:id="@+id/userPhotoProfile"
         android:layout_width="133dp"
         android:layout_height="131dp"
+        android:contentDescription="@string/profile_photo"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/profile_picture"
-        tools:layout_editor_absoluteY="99dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166"
+        app:srcCompat="@drawable/profile_picture" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iconUbahProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/icon_edit_profile"
-        tools:layout_editor_absoluteX="223dp"
-        tools:layout_editor_absoluteY="185dp" />
-
+        android:contentDescription="@string/icon_ubah_profil"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254"
+        app:srcCompat="@drawable/icon_edit_profile" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="320dp"
-        android:layout_height="46dp"
+        android:autofillHints="emailAddress"
+        android:layout_width="325dp"
+        android:layout_height="49dp"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
         android:inputType="textEmailAddress"
-        android:text="Masukkan Email"
-        android:textSize="15.5dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="420dp"
+        android:text="@string/masukkan_email"
+        android:hint="@string/masukkan_email"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523"
         tools:text="rusdi@gmail.com" />
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:autofillHints="name"
+        android:layout_width="322dp"
+        android:layout_height="58dp"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
         android:inputType="text"
-        android:text="Masukkan Nama Lengkap"
-        android:textSize="15.5dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="327dp"
+        android:text="@string/masukkan_nama_lengkap"
+        android:hint="@string/masukkan_nama_lengkap"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.401"
         tools:text="Rusdi" />
 
     <TextView
@@ -72,72 +92,94 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Nama Lengkap"
+        android:text="@string/nama_lengkap"
         android:textColor="@color/cokelat"
-        android:textSize="15.5dp"
+        android:textSize="@dimen/heading2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="301dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.362" />
 
     <TextView
         android:id="@+id/judulFormEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Email"
+        android:text="@string/email"
+        android:hint="@string/email"
         android:textColor="@color/cokelat"
-        android:textSize="15.5dp"
+        android:textSize="@dimen/heading2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="394dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
 
     <TextView
         android:id="@+id/judulFormNomorHandphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Nomor Handphone"
+        android:text="@string/nomor_handphone"
         android:textColor="@color/cokelat"
-        android:textSize="15.5dp"
+        android:textSize="@dimen/heading2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="487dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.592" />
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="320dp"
-        android:layout_height="41dp"
+        android:autofillHints="phone"
+        android:layout_width="327dp"
+        android:layout_height="59dp"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
         android:inputType="phone"
-        android:text="Masukkan Nomor Handphone"
-        android:textSize="15.5dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="513dp"
+        android:text="@string/masukkan_nomor_handphone"
+        android:hint="@string/masukkan_nomor_handphone"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.636"
         tools:text="+6281934563345" />
 
     <ImageButton
         android:id="@+id/button_simpan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:contentDescription="@string/button_simpan"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="56dp"
         android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786"
         app:srcCompat="@drawable/button_simpan"
-        tools:layout_editor_absoluteX="236dp"
-        tools:layout_editor_absoluteY="641dp" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/button_kembali"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:contentDescription="@string/button_kembali"
+        android:layout_width="121dp"
+        android:layout_height="52dp"
         android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_simpan"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787"
         app:srcCompat="@drawable/button_kembali"
-        tools:layout_editor_absoluteY="641dp" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
