@@ -10,6 +10,8 @@
     <dimen name="marginRight">10dp</dimen>
     <dimen name="marginBottom">10dp</dimen>
 
+    <dimen name="main_marginLeftPlusmarginLeft">25dp</dimen>
+
     <dimen name="normal_text">16sp</dimen>
     <dimen name="small_text">12sp</dimen>
     <dimen name="heading1">25sp</dimen>
