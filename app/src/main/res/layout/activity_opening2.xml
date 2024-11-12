@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity_opening_2"
-    android:background="@drawable/main_background">
+    android:background="@drawable/opening_2_bg">
 
     <ImageView
         android:layout_width="wrap_content"
