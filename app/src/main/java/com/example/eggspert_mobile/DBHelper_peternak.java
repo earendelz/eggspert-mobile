@@ -17,9 +17,9 @@ public class DBHelper_peternak extends SQLiteOpenHelper {
     public static final String COLUMN_PASS = "password";
 
     public static final String DB_NAME = "eggspert.db";
-    public static final int DB_VERSION = 1 ;
+    public static final int DB_VERSION = 2 ;
 
-    private static final String TBL_CREATE = "CREATE table " +
+    private static final String TBL_CREATE = "CREATE TABLE IF NOT EXISTS " +
             TABLE_NAME + " ( " +
             COLUMN_ID + " integer primary key autoincrement, " +
             COLUMN_NAMA + " varchar(50) not null, " +

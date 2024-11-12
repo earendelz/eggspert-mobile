@@ -9,8 +9,7 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/hovered_home"
-        android:title="Beranda"
-        android:background="@drawable/hovered_button"/>
+        android:title="Beranda"/>
 
     <item
         android:id="@+id/navigation_profile"

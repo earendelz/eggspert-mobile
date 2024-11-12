@@ -33,6 +33,7 @@ public class Welcome extends AppCompatActivity {
         start = findViewById(R.id.btn_start);
 
         Intent i = getIntent();
+        String id = i.getStringExtra("user_id");
         String namaPeternak = i.getStringExtra("name");
         header.setText("Selamat Datang, " + namaPeternak + "!");
         caption.setText(" Selamat datang, " + namaPeternak + "! Perjalanan manajemen peternakan Anda dimulai di sini. Mari optimalkan peternakan unggas Anda bersama-sama dan capai tujuan dengan mudah.");
@@ -41,6 +42,7 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), HomePage.class);
+                i.putExtra("user_id", id);
                 i.putExtra("name", namaPeternak);
                 startActivity(i);
             }

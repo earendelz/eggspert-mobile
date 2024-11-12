@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/paddingHorizontal"
+    android:paddingVertical="@dimen/paddingTop">
+
+    <TextView
+        android:id="@+id/edit_opt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Ubah"
+        android:textStyle="bold"
+        android:paddingBottom="@dimen/paddingTop"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="@dimen/normal_text"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:paddingTop="@dimen/paddingTop"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/delete_opt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Hapus"
+        android:textStyle="bold"
+        android:paddingTop="@dimen/paddingTop"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="@dimen/normal_text"/>
+
+</LinearLayout>

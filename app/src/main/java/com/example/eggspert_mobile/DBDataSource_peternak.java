@@ -16,7 +16,7 @@ public class DBDataSource_peternak {
     };
 
     public DBDataSource_peternak(Context context) {
-        dbHelper =new DBHelper_peternak(context);
+        dbHelper = new DBHelper_peternak(context);
     }
 
     public void open() {

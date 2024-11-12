@@ -10,6 +10,10 @@
     <dimen name="marginRight">10dp</dimen>
     <dimen name="marginBottom">10dp</dimen>
 
+    <dimen name="paddingHorizontal">15dp</dimen>
+    <dimen name="paddingVertical">15dp</dimen>
+    <dimen name="paddingTop">15dp</dimen>
+
     <dimen name="normal_text">16sp</dimen>
     <dimen name="small_text">12sp</dimen>
     <dimen name="heading1">25sp</dimen>

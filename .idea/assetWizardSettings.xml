@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -11,10 +16,25 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../Rafii%20Saragih/AppData/Local/Android/Sdk/icons/material/materialicons/add_circle/baseline_add_circle_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="opening_4" />
+                            <entry key="color" value="ffd56a" />
+                            <entry key="outputName" value="ic_add_data" />
                             <entry key="sourceFile" value="C:\Users\Rafii Saragih\Downloads\Group 1000002803.svg" />
                           </map>
                         </option>

@@ -1,7 +1,10 @@
 package com.example.eggspert_mobile;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +18,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomePage extends AppCompatActivity {
 
     TextView nickname, farmName;
+    LinearLayout kelolaKandang;
     BottomNavigationView navBar;
+    SQLiteDatabase db;
+
+    DBHelper_kandang config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +37,26 @@ public class HomePage extends AppCompatActivity {
 
         nickname = findViewById(R.id.nickname);
         farmName = findViewById(R.id.farmName);
-        navBar = findViewById(R.id.bottom_navigation);
+        kelolaKandang = findViewById(R.id.kelola_kandang);
 
+        navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
 
         Intent i = getIntent();
+        String id = i.getStringExtra("user_id");
         String nama = i.getStringExtra("name");
 
         nickname.setText(nama);
         farmName.setText(nama + "'s Farm");
+
+        kelolaKandang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), KelolaKandang.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", id);
+                startActivity(i);
+            }
+        });
     }
 }
