@@ -11,8 +11,8 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:src="@drawable/opening_4"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/farmer"
         android:layout_above="@+id/are_you_ready"
         android:id="@+id/farmer"
         />

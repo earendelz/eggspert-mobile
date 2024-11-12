@@ -56,7 +56,8 @@
             android:textSize="@dimen/normal_text"
             android:layout_marginTop="@dimen/marginTop"
             android:textStyle="bold"
-            android:backgroundTint="@color/light_choco"/>
+            android:backgroundTint="@color/light_choco"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
