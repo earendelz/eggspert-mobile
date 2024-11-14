@@ -17,20 +17,18 @@
         android:background="@drawable/bg_for_data"
         android:paddingHorizontal="@dimen/paddingHorizontal">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_inside"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_data"
             android:paddingHorizontal="@dimen/paddingHorizontal"
             android:paddingVertical="10dp">
 
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
                 <TextView
+                    app:layout_constraintTop_toTopOf="@id/cl_inside"
+                    app:layout_constraintStart_toStartOf="@id/cl_inside"
                     android:id="@+id/txt_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -38,8 +36,9 @@
                     android:textSize="15sp"
                     android:visibility="gone"/>
 
-
                 <TextView
+                    app:layout_constraintTop_toTopOf="@id/cl_inside"
+                    app:layout_constraintStart_toStartOf="@id/cl_inside"
                     android:id="@+id/txt_nama_kandang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -48,6 +47,8 @@
                     android:fontFamily="@font/poppins_regular"/>
 
                 <TextView
+                    app:layout_constraintBottom_toBottomOf="@id/cl_inside"
+                    app:layout_constraintStart_toStartOf="@id/cl_inside"
                     android:id="@+id/txt_jenis_kandang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -55,16 +56,18 @@
                     android:textSize="12sp"
                     android:fontFamily="@font/poppins_regular"/>
 
-            </LinearLayout>
 
             <ImageButton
+                app:layout_constraintTop_toTopOf="@id/cl_inside"
+                app:layout_constraintBottom_toBottomOf="@id/cl_inside"
+                app:layout_constraintEnd_toEndOf="@id/cl_inside"
                 android:id="@+id/option"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_selection"
                 android:background="@android:color/transparent"/>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
