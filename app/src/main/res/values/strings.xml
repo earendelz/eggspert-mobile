@@ -13,6 +13,48 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+
+    <!-- Strings buat bagian edit profil -->
+    <string name="profile_photo">Profile picture of the user</string>
+    <string name="nomor_handphone">Nomor Handphone</string>
+    <string name="masukkan_email">Masukkan Email</string>
+    <string name="masukkan_nama_lengkap">Masukkan Nama Lengkap</string>
+    <string name="masukkan_nomor_handphone">Masukkan Nomor Handphone</string>
+    <string name="email">Email</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="button_simpan">Button Simpan</string>
+    <string name="edit_profile">Edit Profil</string>
+    <string name="icon_ubah_profil">Icon Ubah Profil</string>
+    <string name="button_kembali">Button Kembali</string>
+
+    <!-- Strings buat bagian profil -->
+    <string name="button_penilaian_app">Button Penilaian Aplikasi</string>
+    <string name="button_ubah_profil">Button Ubah Profil</string>
+    <string name="button_ubah_password">Button Ubah Password</string>
+    <string name="button_kebijakan_privasi">Button Kebijakan Privasi</string>
+    <string name="button_ketentuan_layanan">Button Ketentuan Layanan</string>
+    <string name="button_hubungi_kami">Button Hubungi Kami</string>
+    <string name="akun_pengguna">Akun Pengguna</string>'
+    <string name="nama_pengguna">Rusdi</string>
+    <string name="email_pengguna">rusdi@gmail.com</string>
+    <string name="no_hp_pengguna">+6281934563345</string>
+    <string name="ubah_profil">Ubah profil</string>
+    <string name="ubah_password">Ubah password</string>
+    <string name="kebijakan_privasi">Kebijakan privasi</string>
+    <string name="ketentuan_layanan">Ketentuan Layanan</string>
+    <string name="penilaian_aplikasi">Beri penilaian aplikasi</string>
+    <string name="hubungi_kami">Hubungi kami</string>
+    <string name="akun">Akun</string>
+    <string name="foto_profil">Foto profil</string>
+    <string name="button_keluar">Button keluar</string>
+
+
+    <!-- Strings buat bagian informasi kandang -->
+    <string name="button_kembali_informasi_kandang">Button Kembali</string>
+    <string name="tambah_kandang">Tambah Kandang</string>
+    <string name="informasi_kandang">Informasi Kandang</string>
+
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
