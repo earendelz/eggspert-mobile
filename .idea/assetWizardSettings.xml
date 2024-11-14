@@ -16,26 +16,12 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
-                        <option name="children">
-                          <map>
-                            <entry key="clipartAsset">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../Rafii%20Saragih/AppData/Local/Android/Sdk/icons/material/materialicons/add_circle/baseline_add_circle_24.xml" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffd56a" />
-                            <entry key="outputName" value="ic_add_data" />
-                            <entry key="sourceFile" value="C:\Users\Rafii Saragih\Downloads\Group 1000002803.svg" />
+                            <entry key="outputName" value="farmer" />
+                            <entry key="sourceFile" value="C:\Users\ACER\gambar_eggspert\farmer.svg" />
                           </map>
                         </option>
                       </PersistentState>

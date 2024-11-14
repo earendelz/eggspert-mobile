@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KelolaKandang" >
+    tools:context=".KelolaKandang"
+    android:background="#FFFBF2">
 
         <LinearLayout
             android:id="@+id/first_ll"
@@ -32,29 +33,31 @@
                     android:src="@drawable/profile_pic"/>
 
                 <LinearLayout
-                    android:layout_width="246dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/nickname"
-                        android:layout_width="246dp"
+                        android:layout_width="210dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:layout_marginRight="@dimen/main_marginRight"
                         android:fontFamily="@font/poppins_regular"
                         android:text="User"
+                        android:textColor="#654520"
                         android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/farm_name"
-                        android:layout_width="246dp"
+                        android:layout_width="210dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:layout_marginRight="@dimen/main_marginRight"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Farm"
+                        android:textColor="#654520"
                         android:textSize="@dimen/small_text" />
 
                 </LinearLayout>
@@ -76,7 +79,7 @@
 
                 <ImageButton
                     android:id="@+id/back_button"
-                    android:layout_width="100dp"
+                    android:layout_width="90dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_back_arrow"
                     android:background="@android:color/transparent"
@@ -90,7 +93,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textFontWeight="900"
                     android:layout_marginTop="37dp"
-                    android:layout_marginEnd="30dp"/>
+                    android:layout_marginEnd="30dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 

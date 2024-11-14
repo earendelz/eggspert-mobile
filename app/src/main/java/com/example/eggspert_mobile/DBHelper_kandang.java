@@ -18,7 +18,7 @@ public class DBHelper_kandang extends SQLiteOpenHelper {
     public static final String COLUMN_IDUSER = "id_peternak";
 
     public static final String DB_NAME = "eggspert.db";
-    public static final int DB_VERSION = 2 ;
+    public static final int DB_VERSION = 3 ;
 
     private static final String TBL_CREATE = "CREATE table IF NOT EXISTS " +
             TABLE_NAME + " ( " +

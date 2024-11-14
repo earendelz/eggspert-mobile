@@ -18,17 +18,15 @@
         android:paddingHorizontal="@dimen/paddingHorizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_inside"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:orientation="horizontal"
             android:background="@drawable/rounded_data"
             android:paddingHorizontal="@dimen/paddingHorizontal"
             android:paddingVertical="10dp">
 
                 <TextView
-                    app:layout_constraintTop_toTopOf="@id/cl_inside"
-                    app:layout_constraintStart_toStartOf="@id/cl_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/txt_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,9 +34,10 @@
                     android:textSize="15sp"
                     android:visibility="gone"/>
 
+
                 <TextView
-                    app:layout_constraintTop_toTopOf="@id/cl_inside"
-                    app:layout_constraintStart_toStartOf="@id/cl_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/txt_nama_kandang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -47,8 +46,8 @@
                     android:fontFamily="@font/poppins_regular"/>
 
                 <TextView
-                    app:layout_constraintBottom_toBottomOf="@id/cl_inside"
-                    app:layout_constraintStart_toStartOf="@id/cl_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:id="@+id/txt_jenis_kandang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,11 +55,10 @@
                     android:textSize="12sp"
                     android:fontFamily="@font/poppins_regular"/>
 
-
             <ImageButton
-                app:layout_constraintTop_toTopOf="@id/cl_inside"
-                app:layout_constraintBottom_toBottomOf="@id/cl_inside"
-                app:layout_constraintEnd_toEndOf="@id/cl_inside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/option"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

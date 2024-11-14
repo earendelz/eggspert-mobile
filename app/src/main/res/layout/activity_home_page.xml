@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage" >
+    tools:context=".HomePage"
+    android:background="#FFFBF2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,30 +39,32 @@
                     android:src="@drawable/profile_pic"/>
 
                 <LinearLayout
-                    android:layout_width="246dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/nickname"
-                        android:layout_width="246dp"
+                        android:layout_width="210dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:layout_marginRight="@dimen/main_marginRight"
                         android:fontFamily="@font/poppins_regular"
                         android:text="User"
                         android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="#654520"/>
 
                     <TextView
                         android:id="@+id/farmName"
-                        android:layout_width="246dp"
+                        android:layout_width="210dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:layout_marginRight="@dimen/main_marginRight"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Farm"
-                        android:textSize="@dimen/small_text" />
+                        android:textSize="@dimen/small_text"
+                        android:textColor="#654520"/>
 
                 </LinearLayout>
 
@@ -84,7 +87,8 @@
                 android:textFontWeight="900"
                 android:layout_marginTop="@dimen/main_marginTop"
                 android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"/>
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -131,7 +135,8 @@
                                 android:text="Kelola Kandang Ayam"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:fontFamily="@font/poppins_regular"/>
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="#654520"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -140,7 +145,8 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="Pembaruan Terakhir : "
                                 android:textSize="@dimen/small_text"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="#654520"/>
 
                         </LinearLayout>
 
@@ -174,7 +180,8 @@
                                 android:text="Kelola Laporan Ayam"
                                 android:textSize="18sp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="#654520"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -183,7 +190,8 @@
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:textSize="@dimen/small_text"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="#654520"/>
 
                         </LinearLayout>
 
@@ -217,7 +225,8 @@
                                 android:text="Kelola Vaksinasi Ayam"
                                 android:textSize="18sp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="#654520"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -226,7 +235,8 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:layout_marginTop="5dp"
                                 android:textSize="@dimen/small_text"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="#654520"/>
 
                         </LinearLayout>
 
