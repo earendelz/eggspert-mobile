@@ -117,7 +117,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/add_data"
+        android:id="@+id/add_button"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"

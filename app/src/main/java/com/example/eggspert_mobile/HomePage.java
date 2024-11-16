@@ -18,11 +18,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomePage extends AppCompatActivity {
 
     TextView nickname, farmName;
-    LinearLayout kelolaKandang;
+    LinearLayout kelolaKandang, kelolaRas, kelolaPakan;
     BottomNavigationView navBar;
-    SQLiteDatabase db;
 
-    DBHelper_kandang config;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +36,16 @@ public class HomePage extends AppCompatActivity {
 
         nickname = findViewById(R.id.nickname);
         farmName = findViewById(R.id.farmName);
+
         kelolaKandang = findViewById(R.id.kelola_kandang);
+        kelolaRas = findViewById(R.id.kelola_ras);
+        kelolaPakan = findViewById(R.id.kelola_pakan);
 
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
 
-        Intent i = getIntent();
-        String id = i.getStringExtra("user_id");
+        i = getIntent();
+        String user_id = i.getStringExtra("user_id");
         String nama = i.getStringExtra("name");
 
         nickname.setText(nama);
@@ -52,11 +54,27 @@ public class HomePage extends AppCompatActivity {
         kelolaKandang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), KelolaKandang.class);
+                i = new Intent(getApplicationContext(), KelolaKandang.class);
                 i.putExtra("name", nama);
-                i.putExtra("user_id", id);
+                i.putExtra("user_id", user_id);
                 startActivity(i);
             }
         });
+
+        kelolaRas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i = new Intent(getApplicationContext(), KelolaRasAyam.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
+            }
+        });
+
+        kelolaPakan.setOnClickListener(view -> {
+            i = new Intent(getApplicationContext(), KelolaPakan.class);
+            startActivity(i);
+        });
+
     }
 }

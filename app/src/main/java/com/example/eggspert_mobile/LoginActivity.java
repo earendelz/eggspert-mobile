@@ -15,6 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText etUsn, etPass;
     TextView btnRegis; Button btnLogin;
 
-    DBHelper_peternak config;
-    DBDataSource_peternak dataSource;
+//    DBHelper_peternak config;
+//    DBDataSource_peternak dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,31 +54,33 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String username = etUsn.getText().toString();
-                String password = etPass.getText().toString();
+                String username = etUsn.getText().toString().trim();
+                String password = etPass.getText().toString().trim();
 
                 if (!username.isEmpty() && !password.isEmpty()) {
 
-                    dataSource = new DBDataSource_peternak(getApplicationContext());
-                    dataSource.open();
+                    login(username, password);
 
-                    boolean peternak = dataSource.getPeternak(username, password);
-                    if(peternak) {
-                        Peternak p = dataSource.getPeternakUser(username, password);
-
-                        Intent i = new Intent(getApplicationContext(), Welcome.class);
-                        String id = String.valueOf(p.getId());
-                        String namaPeternak = p.getNama();
-                        i.putExtra("user_id", id);
-                        i.putExtra("name", namaPeternak);
-
-                        startActivity(i);
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Username Atau Password Salah",
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
+//                    dataSource = new DBDataSource_peternak(getApplicationContext());
+//                    dataSource.open();
+//
+//                    boolean peternak = dataSource.getPeternak(username, password);
+//                    if(peternak) {
+//                        Peternak p = dataSource.getPeternakUser(username, password);
+//
+//                        Intent i = new Intent(getApplicationContext(), Welcome.class);
+//                        String id = String.valueOf(p.getId());
+//                        String namaPeternak = p.getNama();
+//                        i.putExtra("user_id", id);
+//                        i.putExtra("name", namaPeternak);
+//
+//                        startActivity(i);
+//
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Username Atau Password Salah",
+//                                Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
@@ -87,53 +96,61 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 
-    private void login(String username, String password) {
+    public void login(String username, String password) {
+        String url = "http://10.0.2.2:8000/api/login";
 
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        LoginRequest loginRequest = new LoginRequest(username, password);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("username", username);
+            jsonBody.put("password", password);
 
-        Call<LoginResponse> call = apiService.login(loginRequest);
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    LoginResponse loginResponse = response.body();
-                    if (loginResponse.getAccess_token() != null) {
-                        // Simpan token
-                        saveAuthToken(loginResponse.getAccess_token());
+        } catch (JSONException e) {
+            e.printStackTrace();
 
-                        Intent intent = new Intent(LoginActivity.this, HomePage.class);
-                        startActivity(intent);
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, url, jsonBody,
+                response -> {
+                    try {
+                        JSONObject data = response.getJSONObject("data");
+                        String token = data.getString("token");
+                        JSONObject user = data.getJSONObject("user");
+
+                        String userID = user.getString("id");
+                        String nama = user.getString("nama");
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("token", token);
+                        editor.putString("user_id", userID);
+                        editor.putString("nama", nama);
+                        editor.apply();
+
+                        Toast.makeText(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();
+
+                        Intent i = new Intent(LoginActivity.this, Welcome.class);
+                        i.putExtra("user_id", userID);
+                        i.putExtra("name", nama);
+                        startActivity(i);
                         finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+
+                    } catch (JSONException e){
+                        e.printStackTrace();
 
                     }
-
-                } else {
-                    Toast.makeText(LoginActivity.this, "Server error, please try again", Toast.LENGTH_SHORT).show();
+                },
+                error -> {
+                    Toast.makeText(getApplicationContext(), "Login Gagal! Periksa Kembali", Toast.LENGTH_SHORT).show();
 
                 }
+        );
 
-            }
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
 
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-
-    }
-
-    private void saveAuthToken(String token) {
-        SharedPreferences sharedPreferences = getSharedPreferences("auth_prefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("auth_token", token);
-        editor.apply();
     }
 
 }

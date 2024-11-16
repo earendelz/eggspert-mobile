@@ -22,10 +22,9 @@ public class EditKandang extends AppCompatActivity {
     EditText etNamaKandang, etJenisKandang, etKapasistas, etJumlahAyam;
     Button edit; ImageButton back;
 
-    DBHelper_kandang config;
-    SQLiteDatabase db;
-    String id, username; int user_id;
-    Intent i; Cursor cursor;
+    String id, username;
+    int user_id;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +59,6 @@ public class EditKandang extends AppCompatActivity {
         String farmName = username + "'s Farm";
         farm.setText(farmName);
 
-        config = new DBHelper_kandang(this);
-
         showData();
 
         edit.setOnClickListener(view -> editKandang());
@@ -72,16 +69,8 @@ public class EditKandang extends AppCompatActivity {
 
     private void showData() {
 
-        db = config.getReadableDatabase();
-        cursor = db.rawQuery("SELECT * FROM kandang WHERE id = '" + id + "'", null);
-        cursor.moveToFirst();
-
-        etNamaKandang.setText(cursor.getString(1));
-        etJenisKandang.setText(cursor.getString(2));
-        etKapasistas.setText(cursor.getString(3));
-        etJumlahAyam.setText(cursor.getString(4));
-
     }
+
 
     private void editKandang() {
 
@@ -89,19 +78,6 @@ public class EditKandang extends AppCompatActivity {
         String jenis_kandang = etJenisKandang.getText().toString();
         String kapasitas = etKapasistas.getText().toString();
         String jumlah_ayam = etJumlahAyam.getText().toString();
-
-        if (nama_kandang.isEmpty() || jenis_kandang.isEmpty() || kapasitas.isEmpty() || jumlah_ayam.isEmpty()) {
-            Toast.makeText(this, "Data Harus Diisi Seluruhnya!", Toast.LENGTH_SHORT).show();
-        } else {
-
-            db = config.getReadableDatabase();
-            db.execSQL("UPDATE kandang SET nama_kandang  = '" + nama_kandang + "', jenis_kandang = '" + jenis_kandang
-                    + "', kapasitas = '" + kapasitas + "', jumlah_ayam = '" + jumlah_ayam + "', id_peternak = '" + user_id
-                    + "' WHERE id = '" + id + "'");
-            Toast.makeText(this, "Kandang Berhasil Diubah", Toast.LENGTH_SHORT).show();
-            finish();
-
-        }
 
     }
 

@@ -18,9 +18,6 @@ public class DetailKandang extends AppCompatActivity {
     TextView nickname, farmName, nama, jenis, kapasitas, jumlah;
     ImageButton back;
 
-    DBHelper_kandang config;
-    Cursor cursor;
-    SQLiteDatabase db;
 
     String id;
 
@@ -53,21 +50,12 @@ public class DetailKandang extends AppCompatActivity {
 
         id = i.getStringExtra("id");
 
-        config = new DBHelper_kandang(this);
         detail();
 
         back.setOnClickListener(view -> finish());
 
     }
 
-    private void detail() {
-        db = config.getReadableDatabase();
-        cursor = db.rawQuery("SELECT * FROM kandang WHERE id = '" + id + "'", null);
-        cursor.moveToFirst();
-        nama.setText(cursor.getString(1));
-        jenis.setText(cursor.getString(2));
-        kapasitas.setText(cursor.getString(3));
-        jumlah.setText(cursor.getString(4));
-    }
+    private void detail() {}
 
 }

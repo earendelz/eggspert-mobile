@@ -16,6 +16,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText etNama, etAlamat, etEmail, etUsn, etPass;
@@ -24,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView login;
     ImageButton hidden;
 
-    DBDataSource_peternak dataSource;
+//    DBDataSource_peternak dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,40 +61,33 @@ public class RegisterActivity extends AppCompatActivity {
 
         hidden = findViewById(R.id.hidden);
 
-        dataSource = new DBDataSource_peternak(getApplicationContext());
-        dataSource.open();
+//        dataSource = new DBDataSource_peternak(getApplicationContext());
+//        dataSource.open();
 
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nama = null;
-                String alamat = null;
-                String email = null;
-                String usn = null;
-                String pass = null;
+                String nama = etNama.getText().toString();
+                String alamat = etAlamat.getText().toString();
+                String email = etEmail.getText().toString();
+                String usn = etUsn.getText().toString();
+                String pass = etPass.getText().toString();
 
                 Peternak peternak = null;
-                if( !etNama.getText().toString().isEmpty() &&
-                        !etAlamat.getText().toString().isEmpty() &&
-                        !etEmail.getText().toString().isEmpty() &&
-                        !etUsn.getText().toString().isEmpty() &&
-                        !etPass.getText().toString().isEmpty()) {
+                if( !nama.isEmpty() && !alamat.isEmpty() && !email.isEmpty() && !usn.isEmpty() && !pass.isEmpty()) {
 
                     boolean isChecked = cbOK.isChecked();
 
                     if (isChecked) {
-                        nama = etNama.getText().toString();
-                        alamat = etAlamat.getText().toString();
-                        email = etEmail.getText().toString();
-                        usn = etUsn.getText().toString();
-                        pass = etPass.getText().toString();
 
-                        peternak = dataSource.register(nama, alamat, email, usn, pass);
+                        register(nama, alamat, email, usn, pass);
 
-                        Toast.makeText(getApplicationContext(), "User Berhasil Dibuat", Toast.LENGTH_LONG).show();
-
-                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(i);
+//                        peternak = dataSource.register(nama, alamat, email, usn, pass);
+//
+//                        Toast.makeText(getApplicationContext(), "User Berhasil Dibuat", Toast.LENGTH_LONG).show();
+//
+//                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+//                        startActivity(i);
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Harap Menyetujui Syarat Dan Ketentuan", Toast.LENGTH_SHORT).show();
@@ -111,4 +114,75 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+
+    public void register(String nama, String alamat, String email, String username, String password) {
+        String url = "http://10.0.2.2:8000/api/register";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("nama", nama);
+            jsonBody.put("alamat", alamat);
+            jsonBody.put("email", email);
+            jsonBody.put("username", username);
+            jsonBody.put("password", password);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, url, jsonBody,
+                response -> {
+                    Toast.makeText(getApplicationContext(), "Registrasi Berhasil", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                },
+                error -> {
+                    if (error.networkResponse != null && error.networkResponse.statusCode == 422) {
+                        try {
+                            String errorResponse = new String(error.networkResponse.data, "UTF-8");
+                            JSONObject jsonObject = new JSONObject(errorResponse);
+                            JSONObject errors = jsonObject.getJSONObject("errors");
+
+                            StringBuilder errorMessage = new StringBuilder();
+
+                            if (errors.has("nama")) {
+                                errorMessage.append(errors.getJSONArray("nama").getString(0)).append("\n");
+                            }
+                            if (errors.has("alamat")) {
+                                errorMessage.append(errors.getJSONArray("alamat").getString(0)).append("\n");
+                            }
+                            if (errors.has("email")) {
+                                errorMessage.append(errors.getJSONArray("email").getString(0)).append("\n");
+                            }
+                            if (errors.has("username")) {
+                                errorMessage.append(errors.getJSONArray("username").getString(0)).append("\n");
+                            }
+                            if (errors.has("password")) {
+                                errorMessage.append(errors.getJSONArray("password").getString(0)).append("\n");
+                            }
+
+                            Toast.makeText(RegisterActivity.this, errorMessage.toString().trim(), Toast.LENGTH_LONG).show();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Registrasi gagal, coba lagi", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }
+
+        );
+
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
+
+    }
+
 }
