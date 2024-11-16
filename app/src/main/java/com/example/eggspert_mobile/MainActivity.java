@@ -32,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         runnable = new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this,OpeningActivity.class);
+                Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
                 startActivity(intent);
                 finish();
+
+
             }
         };
         handler.postDelayed(runnable,  1500);

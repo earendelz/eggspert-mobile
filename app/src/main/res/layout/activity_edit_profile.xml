@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_background"
+        tools:context=".EditProfileActivity">
+
+
+        <TextView
+            android:id="@+id/informasiKandang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/edit_profile"
+            android:textColor="@color/cokelat"
+            android:textSize="@dimen/heading1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.057" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/userPhotoProfile"
+            android:layout_width="133dp"
+            android:layout_height="131dp"
+            android:contentDescription="@string/profile_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.166"
+            app:srcCompat="@drawable/profile_picture"
+            app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+        <ImageView
+            android:id="@+id/iconUbahProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/icon_ubah_profil"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.279"
+            app:srcCompat="@drawable/icon_edit_profile" />
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:autofillHints="emailAddress"
+            android:layout_width="325dp"
+            android:layout_height="49dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textEmailAddress"
+            android:hint="@string/masukkan_email"
+            android:textSize="@dimen/normal_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.523"
+            tools:text="rusdi@gmail.com" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:autofillHints="name"
+            android:layout_width="322dp"
+            android:layout_height="58dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="text"
+            android:hint="@string/masukkan_nama_lengkap"
+            android:textSize="@dimen/normal_text"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.401"
+            tools:text="Rusdi" />
+
+        <TextView
+            android:id="@+id/judulFormNamaLengkap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/nama_lengkap"
+            android:textColor="@color/cokelat"
+            android:textSize="@dimen/heading2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.173"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.362" />
+
+        <TextView
+            android:id="@+id/judulFormEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/email"
+            android:hint="@string/email"
+            android:textColor="@color/cokelat"
+            android:textSize="@dimen/heading2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.478" />
+
+        <TextView
+            android:id="@+id/judulFormNomorHandphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/nomor_handphone"
+            android:textColor="@color/cokelat"
+            android:textSize="@dimen/heading2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.195"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.592" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:autofillHints="phone"
+            android:layout_width="327dp"
+            android:layout_height="59dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="phone"
+            android:hint="@string/masukkan_nomor_handphone"
+            android:textSize="@dimen/normal_text"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.636"
+            tools:text="+6281934563345" />
+
+        <ImageButton
+            android:id="@+id/button_simpan"
+            android:contentDescription="@string/button_simpan"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="56dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.786"
+            app:srcCompat="@drawable/button_simpan"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/button_kembali"
+            android:contentDescription="@string/button_kembali"
+            android:layout_width="121dp"
+            android:layout_height="52dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_simpan"
+            app:layout_constraintHorizontal_bias="0.457"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.787"
+            app:srcCompat="@drawable/button_kembali"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/brown"
+            app:itemIconTint="@color/light_choco"
+            app:itemTextColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
