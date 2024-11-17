@@ -33,8 +33,20 @@ public class HomePage extends AppCompatActivity {
             return insets;
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         nickname = findViewById(R.id.nickname);
         farmName = findViewById(R.id.farmName);
+
+        i = getIntent();
+        String user_id = i.getStringExtra("user_id");
+        String nama = i.getStringExtra("name");
+
+        nickname.setText(nama);
+        farmName.setText(nama + "'s Farm");
 
         kelolaKandang = findViewById(R.id.kelola_kandang);
         kelolaLaporan = findViewById(R.id.kelola_laporan);
@@ -46,26 +58,27 @@ public class HomePage extends AppCompatActivity {
         navBar.setSelectedItemId(R.id.navigation_home);
         navBar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(this, HomePage.class));
+                i = new Intent(this, HomePage.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
-                startActivity(new Intent(this, ProfileActivity.class));
+                i = new Intent(this, ProfileActivity.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
-                startActivity(new Intent(this, FarmActivity.class));
+                i = new Intent(this, FarmActivity.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             }
             return false;
         });
-
-        i = getIntent();
-        String user_id = i.getStringExtra("user_id");
-        String nama = i.getStringExtra("name");
-
-        nickname.setText(nama);
-        farmName.setText(nama + "'s Farm");
 
         kelolaKandang.setOnClickListener(new View.OnClickListener() {
             @Override

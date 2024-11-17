@@ -54,19 +54,31 @@ public class PilihKandangForLaporan extends AppCompatActivity {
             return insets;
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String nama_peternak = sharedPreferences.getString("nama",null);
+        String user_id = sharedPreferences.getString("user_id",null);
+
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
         navBar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(this, HomePage.class));
+                i = new Intent(this, HomePage.class);
+                i.putExtra("name", nama_peternak);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
-                startActivity(new Intent(this, ProfileActivity.class));
+                i = new Intent(this, ProfileActivity.class);
+                i.putExtra("name", nama_peternak);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
-                startActivity(new Intent(this, FarmActivity.class));
+                i = new Intent(this, FarmActivity.class);
+                i.putExtra("name", nama_peternak);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             }
             return false;
@@ -76,7 +88,6 @@ public class PilihKandangForLaporan extends AppCompatActivity {
         farmName = findViewById(R.id.farm_name);
 
         i = getIntent();
-        String nama_peternak = i.getStringExtra("name");
 
         nick.setText(nama_peternak);
         farmName.setText(nama_peternak + "'s Farm");

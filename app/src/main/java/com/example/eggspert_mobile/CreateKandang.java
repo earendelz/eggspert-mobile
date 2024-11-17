@@ -53,7 +53,7 @@ public class CreateKandang extends AppCompatActivity {
     ArrayAdapter<RasAyam> adapterRas;
     ArrayAdapter<Pakan> adapterPakan;
 
-    Button add;
+    Button add; Intent i;
     ImageButton back;
     BottomNavigationView navBar;
 
@@ -73,30 +73,40 @@ public class CreateKandang extends AppCompatActivity {
             return insets;
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String nama = sharedPreferences.getString("nama", null);
+        String user_id = sharedPreferences.getString("user_id", null);
+        nick = findViewById(R.id.nickname);
+        farmName = findViewById(R.id.farm_name);
+        nick.setText(nama);
+        farmName.setText(nama + "'s Farm");
+
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
         navBar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(this, HomePage.class));
+                i = new Intent(this, HomePage.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
-                startActivity(new Intent(this, ProfileActivity.class));
+                i = new Intent(this, ProfileActivity.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
-                startActivity(new Intent(this, FarmActivity.class));
+                i = new Intent(this, FarmActivity.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             }
             return false;
         });
-
-        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        String nama = sharedPreferences.getString("nama", null);
-        nick = findViewById(R.id.nickname);
-        farmName = findViewById(R.id.farm_name);
-        nick.setText(nama);
-        farmName.setText(nama + "'s Farm");
 
         // All Edit Text
         etNama = findViewById(R.id.nama_kandang);

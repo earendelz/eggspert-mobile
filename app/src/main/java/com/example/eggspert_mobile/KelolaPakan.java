@@ -51,6 +51,8 @@ public class KelolaPakan extends AppCompatActivity {
     EditText etJenis;
     Button submit;
 
+    Intent i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,27 +64,35 @@ public class KelolaPakan extends AppCompatActivity {
             return insets;
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        user_id = sharedPreferences.getString("user_id", null);
+        nama = sharedPreferences.getString("nama", null);
+
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
         navBar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(this, HomePage.class));
+                i = new Intent(this, HomePage.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
-                startActivity(new Intent(this, ProfileActivity.class));
+                i = new Intent(this, ProfileActivity.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
-                startActivity(new Intent(this, FarmActivity.class));
+                i = new Intent(this, FarmActivity.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             }
             return false;
         });
-
-        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        user_id = sharedPreferences.getString("user_id", null);
-        nama = sharedPreferences.getString("nama", null);
 
         nickname = findViewById(R.id.nickname);
         farmName = findViewById(R.id.farm_name);

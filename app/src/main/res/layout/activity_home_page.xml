@@ -132,16 +132,6 @@
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="#654520"/>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:text="Pembaruan Terakhir : "
-                                    android:textSize="@dimen/small_text"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
                             </LinearLayout>
 
                         </LinearLayout>
@@ -175,16 +165,6 @@
                                     android:text="Kelola Laporan Ayam"
                                     android:textSize="18sp"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Pembaruan Terakhir : "
-                                    android:layout_marginTop="5dp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textSize="@dimen/small_text"
                                     android:textStyle="bold"
                                     android:textColor="#654520"/>
 
@@ -224,16 +204,6 @@
                                     android:textStyle="bold"
                                     android:textColor="#654520"/>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Pembaruan Terakhir : "
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:layout_marginTop="5dp"
-                                    android:textSize="@dimen/small_text"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
                             </LinearLayout>
 
                         </LinearLayout>
@@ -270,16 +240,6 @@
                                     android:textStyle="bold"
                                     android:textColor="#654520"/>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Pembaruan Terakhir : "
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:layout_marginTop="5dp"
-                                    android:textSize="@dimen/small_text"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
                             </LinearLayout>
 
                         </LinearLayout>
@@ -313,16 +273,6 @@
                                     android:text="Kelola Data Ras Ayam"
                                     android:textSize="18sp"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Pembaruan Terakhir : "
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:layout_marginTop="5dp"
-                                    android:textSize="@dimen/small_text"
                                     android:textStyle="bold"
                                     android:textColor="#654520"/>
 

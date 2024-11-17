@@ -61,10 +61,9 @@ public class DataAdapterVaksin extends RecyclerView.Adapter<DataAdapterVaksin.Vi
         holder.txtJumlah.setText(jumlah_ayam);
 
         holder.cardView.setOnClickListener(view -> {
-            Toast.makeText(context, "ID: " + id, Toast.LENGTH_SHORT).show();
-//            i = new Intent(context, DetailKandang.class);
-//            i.putExtra("id", id);
-//            context.startActivity(i);
+            i = new Intent(context, KelolaVaksin.class);
+            i.putExtra("id", id);
+            context.startActivity(i);
 
         });
 

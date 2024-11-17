@@ -32,6 +32,8 @@ public class DetailKandang extends AppCompatActivity {
     TextView namaKandang, jenisKandang, kapasitasKandang, jumlahAyam, rasAyam, jenisPakan, statusPakan, statusKandang;
     ImageButton back;
 
+    Intent i;
+
     BottomNavigationView navBar;
     String id, id_ras_ayam, id_pakan;
 
@@ -48,6 +50,7 @@ public class DetailKandang extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
         String user = sharedPreferences.getString("nama", null);
+        String user_id = sharedPreferences.getString("user_id", null);
         String farm = user + "'s Farm";
 
         nickname = findViewById(R.id.nickname);
@@ -62,13 +65,22 @@ public class DetailKandang extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(this, HomePage.class));
+                i = new Intent(this, HomePage.class);
+                i.putExtra("name", user);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
-                startActivity(new Intent(this, ProfileActivity.class));
+                i = new Intent(this, ProfileActivity.class);
+                i.putExtra("name", user);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
-                startActivity(new Intent(this, FarmActivity.class));
+                i = new Intent(this, FarmActivity.class);
+                i.putExtra("name", user);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             }
             return false;

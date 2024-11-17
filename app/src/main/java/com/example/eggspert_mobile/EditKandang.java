@@ -79,32 +79,42 @@ public class EditKandang extends AppCompatActivity {
             return insets;
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String user = sharedPreferences.getString("nama", null);
+        String user_id = sharedPreferences.getString("nama", null);
+
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
         navBar.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.navigation_home) {
-                startActivity(new Intent(this, HomePage.class));
+                i = new Intent(this, HomePage.class);
+                i.putExtra("name", user);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
-                startActivity(new Intent(this, ProfileActivity.class));
+                i = new Intent(this, ProfileActivity.class);
+                i.putExtra("name", user);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
-                startActivity(new Intent(this, FarmActivity.class));
+                i = new Intent(this, FarmActivity.class);
+                i.putExtra("name", user);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
                 return true;
             }
             return false;
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        String nama = sharedPreferences.getString("nama", null);
-
         //User's Bio
         nick = findViewById(R.id.nickname);
         farmName = findViewById(R.id.farm_name);
-        nick.setText(nama);
-        String farm_name = nama + "'s Farm";
+        nick.setText(user);
+        String farm_name = user + "'s Farm";
         farmName.setText(farm_name);
 
         //All Edit Text
@@ -325,9 +335,12 @@ public class EditKandang extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+
                     }
 
-                }, error -> {
+                    },
+
+                error -> {
                     Log.e("API Error", "Error Response: " + error.getMessage());
 
                 })
@@ -668,7 +681,9 @@ public class EditKandang extends AppCompatActivity {
 
                     }
 
-                }) {
+                })
+        {
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
@@ -677,6 +692,7 @@ public class EditKandang extends AppCompatActivity {
                 return headers;
 
             }
+
         };
 
         Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);

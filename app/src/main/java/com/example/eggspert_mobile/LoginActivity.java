@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText etUsn, etPass;
     TextView btnRegis; Button btnLogin;
 
-//    DBHelper_peternak config;
-//    DBDataSource_peternak dataSource;
+    ImageButton hidden;
+    private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,28 @@ public class LoginActivity extends AppCompatActivity {
         btnRegis = findViewById(R.id.btn_regis);
         btnLogin = findViewById(R.id.btn_login);
 
+        hidden = findViewById(R.id.hidden);
+        hidden.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isPasswordVisible) {
+                    etPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    etPass.setSelection(etPass.length()); // Tetap posisikan kursor di akhir teks
+                    hidden.setImageResource(R.drawable.hide_password);
+
+                } else {
+                    etPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    etPass.setSelection(etPass.length());
+                    hidden.setImageResource(R.drawable.unhidden);
+
+
+                }
+                isPasswordVisible = !isPasswordVisible;
+
+            }
+
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,27 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (!username.isEmpty() && !password.isEmpty()) {
 
                     login(username, password);
-
-//                    dataSource = new DBDataSource_peternak(getApplicationContext());
-//                    dataSource.open();
-//
-//                    boolean peternak = dataSource.getPeternak(username, password);
-//                    if(peternak) {
-//                        Peternak p = dataSource.getPeternakUser(username, password);
-//
-//                        Intent i = new Intent(getApplicationContext(), Welcome.class);
-//                        String id = String.valueOf(p.getId());
-//                        String namaPeternak = p.getNama();
-//                        i.putExtra("user_id", id);
-//                        i.putExtra("name", namaPeternak);
-//
-//                        startActivity(i);
-//
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Username Atau Password Salah",
-//                                Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
