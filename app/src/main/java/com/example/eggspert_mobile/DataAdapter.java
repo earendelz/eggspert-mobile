@@ -1,9 +1,13 @@
 package com.example.eggspert_mobile;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +19,28 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
-    private ArrayList<Kandang> kandangList;
+    private ArrayList IDList, namaList, jenisList, jmlList;
     private Context context;
     private Intent i;
 
-    public DataAdapter(Context context, ArrayList<Kandang> kandangList) {
+    public DataAdapter(Context context, ArrayList IDList, ArrayList namaList, ArrayList jenisList, ArrayList jmlList) {
         this.context = context;
-        this.kandangList = kandangList;
+        this.IDList = IDList;
+        this.namaList = namaList;
+        this.jenisList = jenisList;
+        this.jmlList = jmlList;
     }
 
     @NonNull
@@ -40,52 +52,69 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Kandang kandang = (Kandang) kandangList.get(position);
+        final String id = IDList.get(position).toString();
+        final String nama = namaList.get(position).toString();
+        final String jenis = jenisList.get(position).toString();
+        final String jumlah_ayam = jmlList.get(position).toString();
 
-        holder.txtid.setText(String.valueOf(kandang.getId()));
-        holder.txtNama.setText(kandang.getNama());
-        holder.txtJenis.setText(kandang.getJenis_kandang());
-        holder.txtKapasitas.setText(String.valueOf(kandang.getKapasitas()));
+        holder.txtid.setText(id);
+        holder.txtNama.setText(nama);
+        holder.txtJenis.setText(jenis);
+        holder.txtJumlah.setText(jumlah_ayam);
 
         holder.cardView.setOnClickListener(view -> {
             i = new Intent(context, DetailKandang.class);
-            String id = String.valueOf(kandang.getId());
             i.putExtra("id", id);
             context.startActivity(i);
 
         });
 
-//        holder.option.setOnClickListener(view -> {
-//
-//            BottomSheetDialog bsdOption = new BottomSheetDialog(context);
-//            bsdOption.setContentView(LayoutInflater.from(context.getApplicationContext()).inflate(R.layout.bottom_sheet_dialog, null));
-//
-//            bsdOption.findViewById(R.id.edit_opt).setOnClickListener(view1 -> {
-//                i = new Intent(context, EditKandang.class);
-//                String id = String.valueOf(kandang.getId());
-//                i.putExtra("id", id);
-//                context.startActivity(i);
-//                bsdOption.dismiss();
-//
-//            });
+        holder.option.setOnClickListener(view -> {
 
-//            bsdOption.findViewById(R.id.delete_opt).setOnClickListener(view1 -> {
-//                deleteData(id, Integer.parseInt(owner));
-//                bsdOption.dismiss();
-//
-//            });
+            BottomSheetDialog bsdOption = new BottomSheetDialog(context);
+            bsdOption.setContentView(LayoutInflater.from(context.getApplicationContext()).inflate(R.layout.bottom_sheet_dialog, null));
 
-//            bsdOption.show();
+            bsdOption.findViewById(R.id.edit_opt).setOnClickListener(view1 -> {
+                i = new Intent(context, EditKandang.class);
+                i.putExtra("id", id);
+                context.startActivity(i);
+                bsdOption.dismiss();
 
-//        });
+            });
+
+            bsdOption.findViewById(R.id.delete_opt).setOnClickListener(view1 -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Apakah Anda Yakin Ingin Menghapus Data?")
+                        .setItems(new CharSequence[]{"Ya, Hapus", "Tidak"}, (dialog, which) -> {
+
+                            switch (which) {
+                                case 0 :
+                                    deleteData(id);
+                                    bsdOption.dismiss();
+                                    break;
+
+                                case 1 :
+                                    dialog.dismiss();
+                                    break;
+                            }
+
+                        });
+
+                builder.show();
+
+            });
+
+            bsdOption.show();
+
+        });
 
     }
 
     @Override
-    public int getItemCount() { return kandangList.size(); }
+    public int getItemCount() { return IDList.size(); }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtid, txtNama, txtJenis, txtKapasitas;
+        private TextView txtid, txtNama, txtJenis, txtJumlah;
         private CardView cardView;
         private ImageButton option;
 
@@ -94,7 +123,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             txtid = itemView.findViewById(R.id.txt_id);
             txtNama = itemView.findViewById(R.id.txt_nama_kandang);
             txtJenis = itemView.findViewById(R.id.txt_jenis_kandang);
-            txtKapasitas = itemView.findViewById(R.id.txt_kapasitas);
+            txtJumlah = itemView.findViewById(R.id.txt_jumlah);
 
             option = itemView.findViewById(R.id.option);
 
@@ -104,27 +133,57 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     }
 
-//    private void deleteData(String id, int owner) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setTitle("Apakah Anda Yakin Ingin Menghapus Data?")
-//                .setItems(new CharSequence[]{"Ya, Hapus", "Tidak"}, (dialog, which) -> {
-//
-//                    switch (which) {
-//                        case 0 :
-//
-//                            db = config.getReadableDatabase();
-//                            db.execSQL("DELETE FROM kandang WHERE id = '" + id + "'");
-//                            Toast.makeText(context, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show();
-//                            ((KelolaKandang)context).showData(owner);
-//                            break;
-//
-//                    }
-//
-//                });
-//
-//        builder.show();
-//
-//    }
+    public void deleteData(String id) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        Log.d("SharedPreferences", "Token: " + token);
 
+        if (token == null) {
+            Toast.makeText(context, "Token Tidak Ditemukan! Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
+        String url = "http://10.0.2.2:8000/api/kandangku/" + id;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.DELETE, url,
+                response -> {
+                    Toast.makeText(context, "Data Berhasil Dihapus!", Toast.LENGTH_SHORT).show();
+                    ((KelolaKandang)context).showData();
+
+                }, error -> {
+                    if (error.networkResponse != null) {
+                        int errorCode = error.networkResponse.statusCode;
+                        Log.e("API Error", "Error Code: " + errorCode + " Message: " + new String(error.networkResponse.data));
+
+                        if ( errorCode == 204) {
+                            Toast.makeText(context, "Data Berhasil Dihapus!", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(context, "Gagal Menghapus Data! Silahkan Coba Lagi (1)", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } else {
+                        Log.e("API Error", "Error: " + error.getMessage());
+                        Toast.makeText(context, "Gagal Menghapus Data! Silahkan Coba Lagi (2)", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                Log.d("Token", "Bearer " + token);
+                return headers;
+
+            }
+
+        };
+
+        Eggspert.getInstance().addToRequestQueue(stringRequest);
+
+    }
 
 }

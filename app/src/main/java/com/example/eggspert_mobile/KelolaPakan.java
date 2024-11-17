@@ -2,6 +2,7 @@ package com.example.eggspert_mobile;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONException;
@@ -43,6 +45,8 @@ public class KelolaPakan extends AppCompatActivity {
     ListView lvPakan; ArrayList<Pakan> arrayPakan;
     ArrayAdapter<Pakan> pakanArrayAdapter;
 
+    BottomNavigationView navBar;
+
     String user_id, nama;
     EditText etJenis;
     Button submit;
@@ -56,6 +60,24 @@ public class KelolaPakan extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        navBar = findViewById(R.id.bottom_navigation);
+        navBar.setSelectedItemId(R.id.navigation_home);
+        navBar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                startActivity(new Intent(this, HomePage.class));
+                return true;
+            } else if (itemId == R.id.navigation_profile)  {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_farm) {
+                startActivity(new Intent(this, FarmActivity.class));
+                return true;
+            }
+            return false;
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);

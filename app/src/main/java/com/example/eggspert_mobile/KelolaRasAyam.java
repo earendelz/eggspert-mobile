@@ -28,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONException;
@@ -44,6 +45,8 @@ public class KelolaRasAyam extends AppCompatActivity {
     ListView lvRas; ArrayList<RasAyam> arrayRas;
     ArrayAdapter<RasAyam> rasAyamArrayAdapter;
 
+    BottomNavigationView navBar;
+
     String user_id, nama;
     EditText etNama, etJenis;
     Button submit;
@@ -57,6 +60,24 @@ public class KelolaRasAyam extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        navBar = findViewById(R.id.bottom_navigation);
+        navBar.setSelectedItemId(R.id.navigation_home);
+        navBar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                startActivity(new Intent(this, HomePage.class));
+                return true;
+            } else if (itemId == R.id.navigation_profile)  {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_farm) {
+                startActivity(new Intent(this, FarmActivity.class));
+                return true;
+            }
+            return false;
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
@@ -361,6 +382,7 @@ public class KelolaRasAyam extends AppCompatActivity {
 
                 }
         ) {
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();

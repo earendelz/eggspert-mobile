@@ -147,6 +147,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/kelola_laporan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/marginTop"
@@ -192,6 +193,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/kelola_vaksin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"

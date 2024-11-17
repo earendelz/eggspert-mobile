@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,10 +38,11 @@ public class KelolaKandang extends AppCompatActivity {
     RecyclerView.LayoutManager layout;
     private String user_id;
 
+    BottomNavigationView navBar;
     ImageButton addData, backButton;
     Intent i;
 
-    ArrayList<Kandang> kandangList;
+    ArrayList IDLIst, namaList, jenisList, jmlList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,24 @@ public class KelolaKandang extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        navBar = findViewById(R.id.bottom_navigation);
+        navBar.setSelectedItemId(R.id.navigation_home);
+        navBar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                startActivity(new Intent(this, HomePage.class));
+                return true;
+            } else if (itemId == R.id.navigation_profile)  {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_farm) {
+                startActivity(new Intent(this, FarmActivity.class));
+                return true;
+            }
+            return false;
         });
 
         nick = findViewById(R.id.nickname);
@@ -88,14 +108,16 @@ public class KelolaKandang extends AppCompatActivity {
             rcvData.setLayoutManager(layout);
             rcvData.setHasFixedSize(true);
 
-            kandangList = new ArrayList<>();
-            adapter = new DataAdapter(this, kandangList);
+            IDLIst = new ArrayList<>();
+            namaList = new ArrayList<>();
+            jenisList = new ArrayList<>();
+            jmlList = new ArrayList<>();
+            adapter = new DataAdapter(this, IDLIst, namaList, jenisList, jmlList);
 
             rcvData.setAdapter(adapter);
 
-            kandangList.clear();
-
             showData();
+
 
         }
     }
@@ -116,6 +138,10 @@ public class KelolaKandang extends AppCompatActivity {
                 response -> {
                     try {
                         Log.d("API Response", response.toString());
+                        IDLIst.clear();
+                        namaList.clear();
+                        jenisList.clear();
+                        jmlList.clear();
 
                         for(int count = 0; count < response.length(); count++ ) {
                             JSONObject kandangObject = response.getJSONObject(count);
@@ -123,15 +149,12 @@ public class KelolaKandang extends AppCompatActivity {
                             long id = kandangObject.getLong("id");
                             String nama = kandangObject.getString("nama");
                             String jenisKandang = kandangObject.getString("jenis_kandang");
-                            int kapasitas = kandangObject.getInt("kapasitas");
+                            int jumlah_ayam = kandangObject.getInt("jumlah_ayam");
 
-                            Kandang kandang = new Kandang();
-                            kandang.setId(id);
-                            kandang.setNama(nama);
-                            kandang.setJenis_kandang(jenisKandang);
-                            kandang.setKapasitas(kapasitas);
-
-                            kandangList.add(kandang);
+                            IDLIst.add(id);
+                            namaList.add(nama);
+                            jenisList.add(jenisKandang);
+                            jmlList.add(jumlah_ayam);
                             Log.d("Count", "Count: " + count);
                         }
 

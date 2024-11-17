@@ -1,5 +1,6 @@
 package com.example.eggspert_mobile;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +55,7 @@ public class CreateKandang extends AppCompatActivity {
 
     Button add;
     ImageButton back;
+    BottomNavigationView navBar;
 
     Pakan selectedPakan; RasAyam selectedRas;
 
@@ -68,6 +71,24 @@ public class CreateKandang extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        navBar = findViewById(R.id.bottom_navigation);
+        navBar.setSelectedItemId(R.id.navigation_home);
+        navBar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                startActivity(new Intent(this, HomePage.class));
+                return true;
+            } else if (itemId == R.id.navigation_profile)  {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_farm) {
+                startActivity(new Intent(this, FarmActivity.class));
+                return true;
+            }
+            return false;
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
@@ -90,11 +111,9 @@ public class CreateKandang extends AppCompatActivity {
         jenisKandangData = new ArrayList<>();
         jenisKandangData.add("Petelur");
         jenisKandangData.add("Pedaging");
-
         ArrayAdapter<String> adapterJKandang = new ArrayAdapter<>(
                 this, R.layout.custom_spinner_item, jenisKandangData
         );
-
         adapterJKandang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         jenisKandang.setAdapter(adapterJKandang);
         jenisKandang.setPopupBackgroundResource(R.drawable.custom_spinner_dropdown_background);
@@ -103,7 +122,6 @@ public class CreateKandang extends AppCompatActivity {
         rasAyam = findViewById(R.id.ras_ayam);
         rasData = new ArrayList<>();
         pickRas();
-
         adapterRas = new ArrayAdapter<RasAyam>(
                 this, R.layout.custom_spinner_item, rasData) {
             @Override
@@ -122,7 +140,6 @@ public class CreateKandang extends AppCompatActivity {
                 RasAyam rasAyam = getItem(position);
 
                 TextView textView = (TextView) super.getDropDownView(position, convertView, parent);
-
                 textView.setText(rasAyam.getNama_ras_ayam());
 
                 return textView;
@@ -202,6 +219,7 @@ public class CreateKandang extends AppCompatActivity {
 
         //Radio Group
         rg_sPakan = findViewById(R.id.rg_status);
+
         back = findViewById(R.id.btn_back);
         add = findViewById(R.id.btn_add);
 
@@ -358,6 +376,7 @@ public class CreateKandang extends AppCompatActivity {
 
                 }) {
 
+            @Override
             public Map<String, String> getHeaders() throws AuthFailureError{
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + token);
@@ -369,6 +388,7 @@ public class CreateKandang extends AppCompatActivity {
         };
 
         Eggspert.getInstance().addToRequestQueue(jsonArrayRequest);
+
     }
 
     public void createData(String nama_kandang, String jenis_kandang, int kapasitas, int jumlah_ayam,

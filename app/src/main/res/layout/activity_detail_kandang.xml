@@ -86,10 +86,11 @@
                 android:layout_marginTop="@dimen/main_marginTop"/>
 
             <TextView
+                android:id="@+id/heading_nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kandang"
-                android:textSize="@dimen/heading1"
+                android:textSize="20dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textFontWeight="900"
                 android:layout_marginTop="37dp"
@@ -100,91 +101,176 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/first_ll"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingVertical="@dimen/paddingTop"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        android:paddingVertical="@dimen/paddingVertical"
         android:paddingHorizontal="@dimen/paddingHorizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nama Kandang"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/paddingTop"
+            android:paddingHorizontal="@dimen/paddingHorizontal">
 
-        <TextView
-            android:id="@+id/nama_kandang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="A"
-            android:paddingStart="@dimen/marginLeft"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Kandang"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jenis Kandang"
-            android:layout_marginTop="@dimen/marginTop"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/nama_kandang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/jenis_kandang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="B"
-            android:paddingStart="@dimen/marginLeft"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kandang"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kapasitas Kandang"
-            android:layout_marginTop="@dimen/marginTop"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/jenis_kandang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/kapasitas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="C"
-            android:paddingStart="@dimen/marginLeft"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kapasitas Kandang"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jumlah Ayam"
-            android:layout_marginTop="@dimen/marginTop"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/kapasitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/jml_ayam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="D"
-            android:paddingStart="@dimen/marginLeft"
-            android:textSize="@dimen/normal_text"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Ayam"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/jml_ayam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ras Ayam"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/ras_ayam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Pakan"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/jenis_pakan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="F"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Pakan"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/status_pakan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="G"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Kandang"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/status_kandang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="H"
+                android:paddingStart="@dimen/marginLeft"
+                android:textSize="@dimen/normal_text"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

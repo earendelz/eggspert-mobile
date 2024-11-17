@@ -1,7 +1,6 @@
 package com.example.eggspert_mobile;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomePage extends AppCompatActivity {
 
     TextView nickname, farmName;
-    LinearLayout kelolaKandang, kelolaRas, kelolaPakan;
+    LinearLayout kelolaKandang, kelolaLaporan, kelolaVaksin, kelolaRas, kelolaPakan;
     BottomNavigationView navBar;
 
     Intent i;
@@ -38,11 +37,28 @@ public class HomePage extends AppCompatActivity {
         farmName = findViewById(R.id.farmName);
 
         kelolaKandang = findViewById(R.id.kelola_kandang);
+        kelolaLaporan = findViewById(R.id.kelola_laporan);
+        kelolaVaksin = findViewById(R.id.kelola_vaksin);
         kelolaRas = findViewById(R.id.kelola_ras);
         kelolaPakan = findViewById(R.id.kelola_pakan);
 
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
+        navBar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.navigation_home) {
+                startActivity(new Intent(this, HomePage.class));
+                return true;
+            } else if (itemId == R.id.navigation_profile)  {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_farm) {
+                startActivity(new Intent(this, FarmActivity.class));
+                return true;
+            }
+            return false;
+        });
 
         i = getIntent();
         String user_id = i.getStringExtra("user_id");
@@ -55,6 +71,26 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i = new Intent(getApplicationContext(), KelolaKandang.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
+            }
+        });
+
+        kelolaLaporan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i = new Intent(getApplicationContext(), PilihKandangForLaporan.class);
+                i.putExtra("name", nama);
+                i.putExtra("user_id", user_id);
+                startActivity(i);
+            }
+        });
+
+        kelolaVaksin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i = new Intent(getApplicationContext(), PilihKandangForVaksin.class);
                 i.putExtra("name", nama);
                 i.putExtra("user_id", user_id);
                 startActivity(i);
