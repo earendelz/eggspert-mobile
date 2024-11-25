@@ -96,8 +96,8 @@ public class EditLaporanAyam extends AppCompatActivity {
 
         jenisLaporan = findViewById(R.id.jenis_laporan);
         jenisLaporanData = new ArrayList<>();
-        jenisLaporanData.add("kematian");
-        jenisLaporanData.add("kelahiran");
+        jenisLaporanData.add("Kematian");
+        jenisLaporanData.add("Kelahiran");
         ArrayAdapter<String> adapterJLaporan = new ArrayAdapter<>(
                 this, R.layout.custom_spinner_item, jenisLaporanData
         );

@@ -82,6 +82,16 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        user_id = sharedPreferences.getString("user_id",null);
+
+        getUser(user_id);
+    }
+
     public void logout() {
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
@@ -129,7 +139,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void getUser(String userID) {
+    public void getUser(String userID) {
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
 

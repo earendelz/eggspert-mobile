@@ -129,12 +129,13 @@ public class EditVaksin extends AppCompatActivity {
 
         String url = "http://10.0.2.2:8000/api/vaksinasiku/" + idVaksin;
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET, url, null,
                 response -> {
                     try {
-                        String jenis_vaksin = response.getString("jenis_vaksin");
-                        String tanggal_vaksin = response.getString("tanggal_vaksinasi");
+                        JSONObject jsonObject = response.getJSONObject(0);
+                        String jenis_vaksin = jsonObject.getString("jenis_vaksin");
+                        String tanggal_vaksin = jsonObject.getString("tanggal_vaksinasi");
 
                         etjenisVaksin.setText(jenis_vaksin);
                         ettanggalVaksin.setText(tanggal_vaksin);
@@ -157,7 +158,7 @@ public class EditVaksin extends AppCompatActivity {
 
             }};
 
-        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
+        Eggspert.getInstance().addToRequestQueue(jsonArrayRequest);
 
     }
 
