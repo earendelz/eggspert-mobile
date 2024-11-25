@@ -47,10 +47,9 @@ public class DataAdapterLaporan extends RecyclerView.Adapter<DataAdapterLaporan.
         holder.txtJumlah.setText(jumlah_ayam);
 
         holder.cardView.setOnClickListener(view -> {
-            Toast.makeText(context, "ID: " + id, Toast.LENGTH_SHORT).show();
-//            i = new Intent(context, DetailKandang.class);
-//            i.putExtra("id", id);
-//            context.startActivity(i);
+            i = new Intent(context, KelolaLaporanAyam.class);
+            i.putExtra("id", id);
+            context.startActivity(i);
 
         });
 

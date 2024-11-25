@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
@@ -30,7 +31,7 @@ import java.util.Map;
 
 public class KelolaVaksin extends AppCompatActivity {
 
-    TextView farmName, nick;
+    TextView farmName, nickname;
 
     RecyclerView rcvData;
     RecyclerView.Adapter adapter;
@@ -41,7 +42,7 @@ public class KelolaVaksin extends AppCompatActivity {
     Intent i;
 
     ArrayList IDLIst, jenisList, tanggalList, IDKandangList;
-    String idKandang;
+    String idKandang, nama_peternak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class KelolaVaksin extends AppCompatActivity {
         String nama_peternak = sharedPreferences.getString("nama",null);
         String user_id = sharedPreferences.getString("user_id",null);
 
+        getNamaUser(user_id);
+
         i = getIntent();
         idKandang = i.getStringExtra("id");
 
@@ -67,31 +70,19 @@ public class KelolaVaksin extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 i = new Intent(this, HomePage.class);
-                i.putExtra("name", nama_peternak);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
                 i = new Intent(this, ProfileActivity.class);
-                i.putExtra("name", nama_peternak);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
                 i = new Intent(this, FarmActivity.class);
-                i.putExtra("name", nama_peternak);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             }
             return false;
         });
-
-        nick = findViewById(R.id.nickname);
-        farmName = findViewById(R.id.farm_name);
-
-        nick.setText(nama_peternak);
-        farmName.setText(nama_peternak + "'s Farm");
 
         backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(view -> finish());
@@ -126,6 +117,64 @@ public class KelolaVaksin extends AppCompatActivity {
         showData(idKandang);
     }
 
+    private void getNamaUser(String userID) {
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        if (token == null) {
+            Toast.makeText(this, "Token Tidak Ditemukan! Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        nickname = findViewById(R.id.nickname);
+        farmName = findViewById(R.id.farm_name);
+
+        String url = "http://10.0.2.2:8000/api/users/" + userID;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        boolean success = response.getBoolean("success");
+                        if (success) {
+                            JSONObject jsonObject = response.getJSONObject("data");
+                            nama_peternak = jsonObject.getString("nama");
+
+                            nickname.setText(nama_peternak);
+                            farmName.setText(nama_peternak + "'s Farm");
+
+                        } else {
+                            String errorMessage = response.getString("message");
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+
+                },
+
+                error -> {
+                    Log.e("API Error", "Error Response: " + error.getMessage());
+
+                })
+
+        {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                Log.d("Token", "Bearer " + token);
+                return headers;
+
+            }};
+
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
     public void showData(String idKandang) {
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
@@ -153,12 +202,12 @@ public class KelolaVaksin extends AppCompatActivity {
                             long id = vaksinObject.getLong("id");
                             String jenisVaksin = vaksinObject.getString("jenis_vaksin");
                             String tanggalVaksin = vaksinObject.getString("tanggal_vaksinasi");
-                            String id_product = vaksinObject.getString("id_product");
+                            String id_kandang = vaksinObject.getString("id_kandang");
 
                             IDLIst.add(id);
                             jenisList.add(jenisVaksin);
                             tanggalList.add(tanggalVaksin);
-                            IDKandangList.add(id_product);
+                            IDKandangList.add(id_kandang);
                             Log.d("Count", "Count: " + count);
 
                         }

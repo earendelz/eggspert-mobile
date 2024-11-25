@@ -4,11 +4,15 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="bg_yellow">#FFD56A</color>
+    <color name="light_yellow_profile">#F0CA6A</color>
     <color name="blue">#0000FF</color>
+    <color name="oren">#C0833D</color>
     <color name="light_choco">#C0833D</color>
     <color name="dandy">#DDC196</color>
     <color name="gray">#6F6B6B</color>
     <color name="brown">#654520</color>
     <color name="form_choco">#FDEABA</color>
+    <color name="cokelat">#654520</color>
+    <color name="white_background">#FFFBF2</color>
 
 </resources>

@@ -8,281 +8,281 @@
     tools:context=".HomePage"
     android:background="#FFFBF2">
 
+    <LinearLayout
+    android:id="@+id/ll1"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/header">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/main_marginTop"
+        android:layout_marginBottom="@dimen/marginBottom"
+        android:layout_marginStart="@dimen/main_marginLeft"
+        android:layout_marginEnd="@dimen/main_marginRight">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/profile_pic"/>
+
         <LinearLayout
-            android:id="@+id/ll1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
+            android:layout_width="225dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/header">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/main_marginTop"
-                android:layout_marginBottom="@dimen/marginBottom"
-                android:layout_marginStart="@dimen/main_marginLeft"
-                android:layout_marginEnd="@dimen/main_marginRight">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/profile_pic"/>
-
-                <LinearLayout
-                    android:layout_width="225dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nickname"
-                        android:layout_width="210dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/marginLeft"
-                        android:layout_marginRight="@dimen/main_marginRight"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="User"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="#654520"/>
-
-                    <TextView
-                        android:id="@+id/farmName"
-                        android:layout_width="210dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/marginLeft"
-                        android:layout_marginRight="@dimen/main_marginRight"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Farm"
-                        android:textSize="@dimen/small_text"
-                        android:textColor="#654520"/>
-
-                </LinearLayout>
-
-                <ImageButton
-                    android:id="@+id/notification"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/white_box"
-                    android:scaleType="center"
-                    android:src="@drawable/bell_icon"/>
-
-            </LinearLayout>
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/nickname"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:text="Beranda"
-                android:textSize="@dimen/heading1"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginRight="@dimen/main_marginRight"
                 android:fontFamily="@font/poppins_regular"
-                android:textFontWeight="900"
-                android:layout_marginTop="@dimen/main_marginTop"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:textColor="@color/black"/>
+                android:text="User"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#654520"/>
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/farm_name"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginRight="@dimen/main_marginRight"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Farm"
+                android:textSize="@dimen/small_text"
+                android:textColor="#654520"/>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:paddingHorizontal="@dimen/paddingHorizontal"
-                android:paddingVertical="@dimen/paddingVertical"
-                android:scrollbars="none"
-                app:layout_constraintTop_toBottomOf="@id/ll1"
-                app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-                app:layout_constraintStart_toStartOf="parent">
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/notification"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/white_box"
+            android:scaleType="center"
+            android:src="@drawable/bell_icon"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beranda"
+        android:textSize="@dimen/heading1"
+        android:fontFamily="@font/poppins_regular"
+        android:textFontWeight="900"
+        android:layout_marginTop="@dimen/main_marginTop"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/paddingHorizontal"
+        android:paddingVertical="@dimen/paddingVertical"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/ll1"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/kelola_kandang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="10dp"
+                    android:background="@drawable/layout_features">
 
-                        <LinearLayout
-                            android:id="@+id/kelola_kandang"
-                            android:layout_width="match_parent"
+                     <ImageButton
+                         android:layout_width="100dp"
+                         android:layout_height="100dp"
+                         android:padding="5dp"
+                         android:scaleType="fitCenter"
+                         android:background="@drawable/white_box"
+                         android:src="@drawable/cage"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/main_marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight">
+
+                        <TextView
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:background="@drawable/layout_features">
+                            android:text="Kelola Kandang Ayam"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="#654520"/>
 
-                             <ImageButton
-                                 android:layout_width="100dp"
-                                 android:layout_height="100dp"
-                                 android:padding="5dp"
-                                 android:scaleType="fitCenter"
-                                 android:background="@drawable/white_box"
-                                 android:src="@drawable/cage"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:layout_marginStart="@dimen/main_marginLeft"
-                                android:layout_marginRight="@dimen/main_marginRight">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kelola Kandang Ayam"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textColor="#654520"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/kelola_laporan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/marginTop"
-                            android:padding="10dp"
-                            android:background="@drawable/layout_features">
-
-                            <ImageButton
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:padding="5dp"
-                                android:scaleType="fitCenter"
-                                android:background="@drawable/white_box"
-                                android:src="@drawable/report_vec"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:layout_marginStart="@dimen/main_marginLeft"
-                                android:layout_marginRight="@dimen/main_marginRight">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kelola Laporan Ayam"
-                                    android:textSize="18sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/kelola_vaksin"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:layout_marginTop="@dimen/marginTop"
-                            android:background="@drawable/layout_features">
-
-                            <ImageButton
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:scaleType="fitCenter"
-                                android:padding="5dp"
-                                android:background="@drawable/white_box"
-                                android:src="@drawable/vaccine"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:layout_marginStart="@dimen/main_marginLeft"
-                                android:layout_marginRight="@dimen/main_marginRight">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kelola Vaksinasi Ayam"
-                                    android:textSize="18sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/kelola_pakan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:layout_marginTop="@dimen/marginTop"
-                            android:background="@drawable/layout_features">
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:scaleType="fitCenter"
-                                android:padding="5dp"
-                                android:background="@drawable/white_box"
-                                android:src="@drawable/pakan_ayam_home"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:layout_marginStart="@dimen/main_marginLeft"
-                                android:layout_marginRight="@dimen/main_marginRight">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kelola Pakan Ayam"
-                                    android:textSize="18sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/kelola_ras"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:layout_marginTop="@dimen/marginTop"
-                            android:background="@drawable/layout_features">
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:scaleType="fitCenter"
-                                android:padding="5dp"
-                                android:background="@drawable/white_box"
-                                android:src="@drawable/ras_ayam_home"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:layout_marginStart="@dimen/main_marginLeft"
-                                android:layout_marginRight="@dimen/main_marginRight">
-
-                                <TextView
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="Kelola Data Ras Ayam"
-                                    android:textSize="18sp"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:textStyle="bold"
-                                    android:textColor="#654520"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </ScrollView>
+                <LinearLayout
+                    android:id="@+id/kelola_laporan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:padding="10dp"
+                    android:background="@drawable/layout_features">
+
+                    <ImageButton
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter"
+                        android:background="@drawable/white_box"
+                        android:src="@drawable/report_vec"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/main_marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Kelola Laporan Ayam"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textStyle="bold"
+                            android:textColor="#654520"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/kelola_vaksin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:background="@drawable/layout_features">
+
+                    <ImageButton
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="fitCenter"
+                        android:padding="5dp"
+                        android:background="@drawable/white_box"
+                        android:src="@drawable/vaccine"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/main_marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Kelola Vaksinasi Ayam"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textStyle="bold"
+                            android:textColor="#654520"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/kelola_pakan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:background="@drawable/layout_features">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="fitCenter"
+                        android:padding="5dp"
+                        android:background="@drawable/white_box"
+                        android:src="@drawable/pakan_ayam_home"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/main_marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Kelola Pakan Ayam"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textStyle="bold"
+                            android:textColor="#654520"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/kelola_ras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:background="@drawable/layout_features">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="fitCenter"
+                        android:padding="5dp"
+                        android:background="@drawable/white_box"
+                        android:src="@drawable/ras_ayam_home"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/main_marginLeft"
+                        android:layout_marginRight="@dimen/main_marginRight">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Kelola Data Ras Ayam"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textStyle="bold"
+                            android:textColor="#654520"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

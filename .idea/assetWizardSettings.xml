@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_calendar" />
-                            <entry key="sourceFile" value="C:\Users\Rafii Saragih\Downloads\unhidden.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="xmlid_1284_" />
+                            <entry key="sourceFile" value="C:\Users\Rafii Saragih\Downloads\XMLID_1284_.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -124,13 +124,19 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject user = data.getJSONObject("user");
 
                         String userID = user.getString("id");
+                        String usn = user.getString("username");
                         String nama = user.getString("nama");
+                        String email = user.getString("email");
+                        String alamat = user.getString("alamat");
 
                         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("token", token);
                         editor.putString("user_id", userID);
+                        editor.putString("username", usn);
                         editor.putString("nama", nama);
+                        editor.putString("email", email);
+                        editor.putString("alamat", alamat);
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login Berhasil", Toast.LENGTH_SHORT).show();

@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class CreateKandang extends AppCompatActivity {
 
-    TextView nick, farmName;
+    TextView nickname, farmName;
 
     EditText etNama, etKap, etJml;
     Spinner jenisKandang, rasAyam, jenisPakan;
@@ -56,6 +56,7 @@ public class CreateKandang extends AppCompatActivity {
     Button add; Intent i;
     ImageButton back;
     BottomNavigationView navBar;
+    String nama, user_id;
 
     Pakan selectedPakan; RasAyam selectedRas;
 
@@ -74,12 +75,9 @@ public class CreateKandang extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        String nama = sharedPreferences.getString("nama", null);
-        String user_id = sharedPreferences.getString("user_id", null);
-        nick = findViewById(R.id.nickname);
-        farmName = findViewById(R.id.farm_name);
-        nick.setText(nama);
-        farmName.setText(nama + "'s Farm");
+        user_id = sharedPreferences.getString("user_id", null);
+
+        pickUser(user_id);
 
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
@@ -88,20 +86,14 @@ public class CreateKandang extends AppCompatActivity {
 
             if (itemId == R.id.navigation_home) {
                 i = new Intent(this, HomePage.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
                 i = new Intent(this, ProfileActivity.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
                 i = new Intent(this, FarmActivity.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             }
@@ -499,6 +491,64 @@ public class CreateKandang extends AppCompatActivity {
 
             }
         };
+
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
+    private void pickUser(String userID) {
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        if (token == null) {
+            Toast.makeText(this, "Token Tidak Ditemukan! Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        nickname = findViewById(R.id.nickname);
+        farmName = findViewById(R.id.farm_name);
+
+        String url = "http://10.0.2.2:8000/api/users/" + userID;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        boolean success = response.getBoolean("success");
+                        if (success) {
+                            JSONObject jsonObject = response.getJSONObject("data");
+                            nama = jsonObject.getString("nama");
+
+                            nickname.setText(nama);
+                            farmName.setText(nama + "'s Farm");
+
+                        } else {
+                            String errorMessage = response.getString("message");
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+
+                },
+
+                error -> {
+                    Log.e("API Error", "Error Response: " + error.getMessage());
+
+                })
+
+        {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                Log.d("Token", "Bearer " + token);
+                return headers;
+
+            }};
 
         Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
     }

@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class EditVaksin extends AppCompatActivity {
 
-    TextView farmName, nick;
+    TextView farmName, nickname;
     EditText etjenisVaksin, ettanggalVaksin;
 
     Button edit;
@@ -41,7 +41,7 @@ public class EditVaksin extends AppCompatActivity {
     BottomNavigationView navBar;
 
     Intent i;
-    String id, id_kandang;
+    String id, id_kandang, user_id, nama;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +55,7 @@ public class EditVaksin extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        String nama_peternak = sharedPreferences.getString("nama",null);
-        String user_id = sharedPreferences.getString("user_id",null);
+        user_id = sharedPreferences.getString("user_id",null);
 
         i = getIntent();
         id = i.getStringExtra("id");
@@ -68,31 +67,21 @@ public class EditVaksin extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 i = new Intent(this, HomePage.class);
-                i.putExtra("name", nama_peternak);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
                 i = new Intent(this, ProfileActivity.class);
-                i.putExtra("name", nama_peternak);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
                 i = new Intent(this, FarmActivity.class);
-                i.putExtra("name", nama_peternak);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             }
             return false;
         });
 
-        nick = findViewById(R.id.nickname);
-        farmName = findViewById(R.id.farm_name);
-
-        nick.setText(nama_peternak);
-        farmName.setText(nama_peternak + "'s Farm");
+        getNamaUser(user_id);
 
         backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(view -> finish());
@@ -246,6 +235,64 @@ public class EditVaksin extends AppCompatActivity {
 
         Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
 
+    }
+
+    private void getNamaUser(String userID) {
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        if (token == null) {
+            Toast.makeText(this, "Token Tidak Ditemukan! Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        nickname = findViewById(R.id.nickname);
+        farmName = findViewById(R.id.farm_name);
+
+        String url = "http://10.0.2.2:8000/api/users/" + userID;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        boolean success = response.getBoolean("success");
+                        if (success) {
+                            JSONObject jsonObject = response.getJSONObject("data");
+                            nama = jsonObject.getString("nama");
+
+                            nickname.setText(nama);
+                            farmName.setText(nama + "'s Farm");
+
+                        } else {
+                            String errorMessage = response.getString("message");
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+
+                },
+
+                error -> {
+                    Log.e("API Error", "Error Response: " + error.getMessage());
+
+                })
+
+        {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                Log.d("Token", "Bearer " + token);
+                return headers;
+
+            }};
+
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
     }
 
 }

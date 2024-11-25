@@ -17,6 +17,45 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EditLaporanGudang"
+            android:exported="false" />
+        <activity
+            android:name=".CreateLaporanGudang"
+            android:exported="false" />
+        <activity
+            android:name=".KelolaLaporanGudang"
+            android:exported="false" />
+        <activity
+            android:name=".CreateLaporanAyam"
+            android:exported="false" />
+        <activity
+            android:name=".EditLaporanAyam"
+            android:exported="false" />
+        <activity
+            android:name=".KelolaLaporanAyam"
+            android:exported="false" />
+        <activity
+            android:name=".EditGudang"
+            android:exported="false" />
+        <activity
+            android:name=".DetailGudang"
+            android:exported="false" />
+        <activity
+            android:name=".CreateGudang"
+            android:exported="false" />
+        <activity
+            android:name=".PilihGudangForLaporan"
+            android:exported="false" />
+        <activity
+            android:name=".KelolaGudang"
+            android:exported="false" />
+        <activity
+            android:name=".EditPassword"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
             android:name=".EditVaksin"
             android:exported="false" />
         <activity

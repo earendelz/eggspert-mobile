@@ -1,10 +1,13 @@
 package com.example.eggspert_mobile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +15,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomePage extends AppCompatActivity {
 
@@ -21,6 +33,7 @@ public class HomePage extends AppCompatActivity {
     BottomNavigationView navBar;
 
     Intent i;
+    String namaUser, user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +51,10 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        nickname = findViewById(R.id.nickname);
-        farmName = findViewById(R.id.farmName);
 
-        i = getIntent();
-        String user_id = i.getStringExtra("user_id");
-        String nama = i.getStringExtra("name");
-
-        nickname.setText(nama);
-        farmName.setText(nama + "'s Farm");
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        user_id = sharedPreferences.getString("user_id",null);
+        getNamaUser(user_id);
 
         kelolaKandang = findViewById(R.id.kelola_kandang);
         kelolaLaporan = findViewById(R.id.kelola_laporan);
@@ -60,20 +68,14 @@ public class HomePage extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 i = new Intent(this, HomePage.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
                 i = new Intent(this, ProfileActivity.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
                 i = new Intent(this, FarmActivity.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             }
@@ -84,8 +86,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i = new Intent(getApplicationContext(), KelolaKandang.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
             }
         });
@@ -94,8 +94,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i = new Intent(getApplicationContext(), PilihKandangForLaporan.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
             }
         });
@@ -104,8 +102,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i = new Intent(getApplicationContext(), PilihKandangForVaksin.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
             }
         });
@@ -114,8 +110,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i = new Intent(getApplicationContext(), KelolaRasAyam.class);
-                i.putExtra("name", nama);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
             }
         });
@@ -126,4 +120,63 @@ public class HomePage extends AppCompatActivity {
         });
 
     }
+
+    private void getNamaUser(String userID) {
+        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+
+        if (token == null) {
+            Toast.makeText(this, "Token Tidak Ditemukan! Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        nickname = findViewById(R.id.nickname);
+        farmName = findViewById(R.id.farm_name);
+
+        String url = "http://10.0.2.2:8000/api/users/" + userID;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        boolean success = response.getBoolean("success");
+                        if (success) {
+                            JSONObject jsonObject = response.getJSONObject("data");
+                            namaUser = jsonObject.getString("nama");
+
+                            nickname.setText(namaUser);
+                            farmName.setText(namaUser + "'s Farm");
+
+                        } else {
+                            String errorMessage = response.getString("message");
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+
+                },
+
+                error -> {
+                    Log.e("API Error", "Error Response: " + error.getMessage());
+
+                })
+
+        {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                Log.d("Token", "Bearer " + token);
+                return headers;
+
+            }};
+
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
+    }
+
 }

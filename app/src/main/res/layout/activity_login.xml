@@ -102,21 +102,12 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/forgot_pass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lupa Password?"
-            android:layout_marginTop="@dimen/marginTop"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/blue"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="250dp"
             android:layout_marginEnd="@dimen/main_marginLeft"
             android:layout_marginStart="@dimen/main_marginRight">
 
@@ -165,16 +156,6 @@
                     android:scaleType="fitCenter"/>
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/btn_guest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Masuk Sebagai Tamu"
-                android:layout_marginTop="@dimen/marginTop"
-                android:textSize="@dimen/normal_text"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/gray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

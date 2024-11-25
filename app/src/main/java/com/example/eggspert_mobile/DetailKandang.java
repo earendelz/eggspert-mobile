@@ -35,7 +35,7 @@ public class DetailKandang extends AppCompatActivity {
     Intent i;
 
     BottomNavigationView navBar;
-    String id, id_ras_ayam, id_pakan;
+    String id, id_ras_ayam, id_pakan, user_id, user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +49,12 @@ public class DetailKandang extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        String user = sharedPreferences.getString("nama", null);
-        String user_id = sharedPreferences.getString("user_id", null);
-        String farm = user + "'s Farm";
+        user_id = sharedPreferences.getString("user_id", null);
 
         nickname = findViewById(R.id.nickname);
         farmName = findViewById(R.id.farm_name);
 
-        nickname.setText(user);
-        farmName.setText(farm);
+        getNamaUser(user_id);
 
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.navigation_home);
@@ -66,20 +63,14 @@ public class DetailKandang extends AppCompatActivity {
 
             if (itemId == R.id.navigation_home) {
                 i = new Intent(this, HomePage.class);
-                i.putExtra("name", user);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_profile)  {
                 i = new Intent(this, ProfileActivity.class);
-                i.putExtra("name", user);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             } else if (itemId == R.id.navigation_farm) {
                 i = new Intent(this, FarmActivity.class);
-                i.putExtra("name", user);
-                i.putExtra("user_id", user_id);
                 startActivity(i);
                 return true;
             }
@@ -117,27 +108,30 @@ public class DetailKandang extends AppCompatActivity {
 
         String url = "http://10.0.2.2:8000/api/kandangku/" + id;
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET, url, null,
                 response -> {
                     try {
-                        String nama = response.getString("nama");
-                        String jenis_kandang = response.getString("jenis_kandang");
-                        String kapasitas = response.getString("kapasitas");
-                        String jumlah_ayam = response.getString("jumlah_ayam");
-                        id_ras_ayam = response.getString("id_ras_ayam");
-                        id_pakan = response.getString("id_pakan");
-                        String status_pakan = response.getString("status_pakan");
-                        String status_kandang = response.getString("status_kandang");
+                        JSONObject jsonObject = response.getJSONObject(0);
+                        JSONObject rasObject = jsonObject.getJSONObject("ras_ayam");
+                        JSONObject pakanObject = jsonObject.getJSONObject("pakan");
 
-                        getRas(id_ras_ayam);
-                        getPakan(id_pakan);
+                        String nama = jsonObject.getString("nama");
+                        String jenis_kandang = jsonObject.getString("jenis_kandang");
+                        String kapasitas = jsonObject.getString("kapasitas");
+                        String jumlah_ayam = jsonObject.getString("jumlah_ayam");
+                        String nama_ras_ayam = rasObject.getString("nama_ras_ayam");
+                        String jenis_pakan = pakanObject.getString("jenis_pakan");
+                        String status_pakan = jsonObject.getString("status_pakan");
+                        String status_kandang = jsonObject.getString("status_kandang");
 
                         heading.setText(nama);
                         namaKandang.setText(nama);
                         jenisKandang.setText(jenis_kandang);
                         kapasitasKandang.setText(kapasitas + " Ekor");
                         jumlahAyam.setText(jumlah_ayam + " Ekor");
+                        rasAyam.setText(nama_ras_ayam);
+                        jenisPakan.setText(jenis_pakan);
                         statusPakan.setText(status_pakan);
                         statusKandang.setText(status_kandang);
 
@@ -171,88 +165,55 @@ public class DetailKandang extends AppCompatActivity {
 
         };
 
-        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
+        Eggspert.getInstance().addToRequestQueue(jsonArrayRequest);
 
     }
 
-    public void getRas(String idRas) {
+    private void getNamaUser(String userID) {
         SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
 
         if (token == null) {
-            Toast.makeText(this, "Token Tidak Ditemukan, Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Token Tidak Ditemukan! Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String url = "http://10.0.2.2:8000/api/rasayamku/" + idRas;
+        nickname = findViewById(R.id.nickname);
+        farmName = findViewById(R.id.farm_name);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+        String url = "http://10.0.2.2:8000/api/users/" + userID;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET, url, null,
                 response -> {
                     try {
-                        JSONObject rasAyamResponse = response.getJSONObject(0);
-                        String namaRas = rasAyamResponse.getString("nama_ras_ayam");
-                        rasAyam.setText(namaRas);
+                        boolean success = response.getBoolean("success");
+                        if (success) {
+                            JSONObject jsonObject = response.getJSONObject("data");
+                            user = jsonObject.getString("nama");
+
+                            nickname.setText(user);
+                            farmName.setText(user + "'s Farm");
+
+                        } else {
+                            String errorMessage = response.getString("message");
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(DetailKandang.this, "Gagal Mengambil Data! 1", Toast.LENGTH_SHORT).show();
 
                     }
 
                 },
+
                 error -> {
-                    Log.e("API_ERROR", error.toString());
-                    Toast.makeText(DetailKandang.this, "Gagal Mengambil Data! 2", Toast.LENGTH_SHORT).show();
+                    Log.e("API Error", "Error Response: " + error.getMessage());
 
-                }
-        ) {
+                })
 
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer " + token);
-                Log.d("Token", "Bearer " + token);
-                return headers;
-
-            }
-
-        };
-
-        Eggspert.getInstance().addToRequestQueue(jsonArrayRequest);
-
-    }
-
-    public void getPakan(String idPakan) {
-        SharedPreferences sharedPreferences = getSharedPreferences("EggspertPrefs", MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", null);
-
-        if (token == null) {
-            Toast.makeText(this, "Token Tidak Ditemukan, Silahkan Login Kembali", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String url = "http://10.0.2.2:8000/api/pakanku/" + idPakan;
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        JSONObject pakanResponse = response.getJSONObject(0);
-                        String jenis_pakan = pakanResponse.getString("jenis_pakan");
-                        jenisPakan.setText(jenis_pakan);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-
-                    }
-
-                }, error -> {
-                    Log.e("API_ERROR", error.toString());
-                    Toast.makeText(DetailKandang.this, "Gagal Mengambil Data! 2", Toast.LENGTH_SHORT).show();
-                }
-
-        ) {
+        {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -261,12 +222,9 @@ public class DetailKandang extends AppCompatActivity {
                 Log.d("Token", "Bearer " + token);
                 return headers;
 
-            }
+            }};
 
-        };
-
-        Eggspert.getInstance().addToRequestQueue(jsonArrayRequest);
-
+        Eggspert.getInstance().addToRequestQueue(jsonObjectRequest);
     }
 
 }

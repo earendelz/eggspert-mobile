@@ -5,6 +5,421 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_background"
     tools:context=".ProfileActivity">
+
+    <View
+        android:id="@+id/batasProfilDanAkun"
+        android:layout_width="414dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/light_yellow_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonKeluar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
+
+    <View
+        android:id="@+id/batasAkunDanKebijakanPrivasi"
+        android:layout_width="413dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/light_yellow_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonKeluar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <View
+        android:id="@+id/batasKebijakanPrivasiDanBar"
+        android:layout_width="412dp"
+        android:layout_height="105dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/light_yellow_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.89" />
+
+    <TextView
+        android:id="@+id/akunPengguna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/akun_pengguna"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/heading1"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/userPhotoProfile"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/profile_photo"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111"
+        app:shapeAppearanceOverlay="@style/CircularImageView"
+        app:srcCompat="@drawable/profile_picture" />
+
+    <TextView
+        android:id="@+id/user_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/no_hp_pengguna"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Bogor Barat"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.252" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/akun_pengguna"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/nama_pengguna"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonKeluar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.227" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:contentDescription="@string/email_pengguna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/email_pengguna"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonKeluar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.265" />
+
+    <TextView
+        android:id="@+id/ubahPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/ubah_password"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.439" />
+
+    <TextView
+        android:id="@+id/ubahProfil"
+        android:contentDescription="@string/ubah_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/ubah_profil"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.394" />
+
+    <ImageButton
+        android:id="@+id/arrowUbahPassword"
+        android:contentDescription="@string/button_ubah_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.437"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageButton
+        android:id="@+id/arrowUbahProfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        android:contentDescription="@string/button_ubah_profil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.389"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageView
+        android:id="@+id/iconUbahProfil"
+        android:layout_width="22dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/ubah_profil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
+        app:srcCompat="@drawable/change_profile" />
+
+    <ImageView
+        android:id="@+id/iconUbahPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ubah_password"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonKeluar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.512"
+        app:srcCompat="@drawable/change_password" />
+
+    <TextView
+        android:id="@+id/akun"
+        android:contentDescription="@string/akun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/akun"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/heading2"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349" />
+
+    <TextView
+        android:id="@+id/ketentuanLayanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/ketentuan_layanan"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.641" />
+
+    <TextView
+        android:id="@+id/penilaianAplikasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/penilaian_aplikasi"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.693" />
+
+    <ImageButton
+        android:id="@+id/arrowPenilaianAplikasi"
+        android:contentDescription="@string/button_penilaian_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.692"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageButton
+        android:id="@+id/arrowHubungiKami"
+        android:contentDescription="@string/button_hubungi_kami"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.746"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageButton
+        android:id="@+id/arrowKetentuanLayanan"
+        android:contentDescription="@string/button_ketentuan_layanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageButton
+        android:id="@+id/arrowKebijakanPrivasi"
+        android:contentDescription="@string/button_kebijakan_privasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.583"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <TextView
+        android:id="@+id/hubungiKami"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/hubungi_kami"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
+
+
+    <ImageView
+        android:id="@+id/iconKetentuanLayanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ketentuan_layanan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638"
+        app:srcCompat="@drawable/service_policy" />
+
+    <ImageView
+        android:id="@+id/iconPenilaianAplikasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/penilaian_aplikasi"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69"
+        app:srcCompat="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/iconHubungiKami"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hubungi_kami"
+        app:layout_constraintBottom_toBottomOf="@+id/batasKebijakanPrivasiDanBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827"
+        app:srcCompat="@drawable/headphone" />
+
+    <ImageView
+        android:id="@+id/iconKebijakanPrivasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/kebijakan_privasi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.582"
+        app:srcCompat="@drawable/privacy_policy" />
+
+    <TextView
+        android:id="@+id/kebijakanPrivasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/kebijakan_privasi"
+        android:textColor="@color/cokelat"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.585" />
+
+    <ImageButton
+        android:id="@+id/buttonKeluar"
+        android:contentDescription="button_keluar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.853"
+        app:srcCompat="@drawable/button_keluar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/light_choco"
+        app:itemTextColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
